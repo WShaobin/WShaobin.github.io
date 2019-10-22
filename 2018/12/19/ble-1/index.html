@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "bdae8d41"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-w.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,Ble,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wynsbin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="这里只要是Android设备与BLE设备的通讯都可以共用，只需要该的就是uuid的值，还有就是ble设备提供商要出文档协议，看看是如何发命令跟接收命令的。">
+<meta name="keywords" content="Android,Ble">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android BLE最完整的工具类(扫描&#x2F;连接&#x2F;读写&#x2F;通知设备)">
+<meta property="og:url" content="https://wshaobin.github.io/2018/12/19/ble-1/index.html">
+<meta property="og:site_name" content="Wynsbin">
+<meta property="og:description" content="这里只要是Android设备与BLE设备的通讯都可以共用，只需要该的就是uuid的值，还有就是ble设备提供商要出文档协议，看看是如何发命令跟接收命令的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-22T01:19:05.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android BLE最完整的工具类(扫描&#x2F;连接&#x2F;读写&#x2F;通知设备)">
+<meta name="twitter:description" content="这里只要是Android设备与BLE设备的通讯都可以共用，只需要该的就是uuid的值，还有就是ble设备提供商要出文档协议，看看是如何发命令跟接收命令的。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wshaobin.github.io/2018/12/19/ble-1/">
+
+
+
+
+
+  <title>Android BLE最完整的工具类(扫描/连接/读写/通知设备) | Wynsbin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/WShaobin" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wynsbin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">低调做人，高调做事</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wshaobin.github.io/2018/12/19/ble-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wynsbin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wynsbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android BLE最完整的工具类(扫描/连接/读写/通知设备)</h1>
+        
+
+        <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T17:30:19+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这里只要是Android设备与BLE设备的通讯都可以共用，只需要该的就是uuid的值，还有就是ble设备提供商要出文档协议，看看是如何发命令跟接收命令的。<br><a id="more"></a></p>
+<p>BleUtil工具中，有些地方我感觉还是要提示下</p>
+<p>1、characterUUID1 、characterUUID2 、descriptorUUID 这三个是对应的收发命令的，跟找到要操作的BluetoothGattDescriptor（特性）。</p>
+<p>在做这个项目的时候ble设备提供商给的文档中uuid，是短的，我实际我打印出来的是长的。其实短的那种是ios来的，而android就不一样咯。可以参考：<a href="http://blog.csdn.net/qq_30552993/article/details/51819331" target="_blank" rel="noopener">Android与IOS的UUID的区别</a></p>
+<p>2、sendWorkModel、sendStrength 这两个方法是用来发送命令的，传值都是byte[]数组；而接收命令的话通过receiveData方法进行解析得到的byte[]。这三个方法都是需要根据不同设备协议进行修改，这里只是为了案例展示。总的来说就是收发命令都是byte[]</p>
+<h2 id="关键概念"><a href="#关键概念" class="headerlink" title="关键概念"></a>关键概念</h2><h3 id="Generic-Attribute-Profile-GATT"><a href="#Generic-Attribute-Profile-GATT" class="headerlink" title="Generic Attribute Profile (GATT)"></a>Generic Attribute Profile (GATT)</h3><p>通过BLE连接，读写属性类小数据的Profile通用规范。现在所有的BLE应用Profile都是基于GATT的。</p>
+<h3 id="Attribute-Protocol-ATT"><a href="#Attribute-Protocol-ATT" class="headerlink" title="Attribute Protocol (ATT)"></a>Attribute Protocol (ATT)</h3><p>GATT是基于ATT Protocol的。ATT针对BLE设备做了专门的优化，具体就是在传输过程中使用尽量少的数据。</p>
+<p>每个属性都有一个唯一的UUID，属性将以characteristics and services的形式传输。</p>
+<h3 id="Characteristic"><a href="#Characteristic" class="headerlink" title="Characteristic"></a>Characteristic</h3><p>Characteristic可以理解为一个数据类型，它包括一个value和0至多个对次value的描述（Descriptor）。</p>
+<h3 id="Descriptor"><a href="#Descriptor" class="headerlink" title="Descriptor"></a>Descriptor</h3><p>对Characteristic的描述，例如范围、计量单位等。</p>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>Characteristic的集合。例如一个service叫做“Heart Rate Monitor”，</p>
+<p>它可能包含多个Characteristics，其中可能包含一个叫做“heart rate measurement”的Characteristic。</p>
+<h2 id="角色和职责"><a href="#角色和职责" class="headerlink" title="角色和职责"></a>角色和职责</h2><p>Android设备与BLE设备交互有两组角色：</p>
+<p>中心设备和外围设备（Central vs. peripheral）；</p>
+<p>GATT server vs. GATT client.</p>
+<p>Central vs. peripheral:</p>
+<p>中心设备和外围设备的概念针对的是BLE连接本身。</p>
+<p>Central角色负责scan advertisement。而peripheral角色负责make advertisement。</p>
+<p>GATT server vs. GATT client:</p>
+<p>这两种角色取决于BLE连接成功后，两个设备间通信的方式。</p>
+<p>举例说明：</p>
+<p>现有一个活动追踪的BLE设备和一个支持BLE的Android设备。</p>
+<p>Android设备支持Central角色，而BLE设备支持peripheral角色。</p>
+<p>创建一个BLE连接需要这两个角色都存在，都仅支持Central角色或者都仅支持peripheral角色则无法建立连接。</p>
+<p>当连接建立后，它们之间就需要传输GATT数据。</p>
+<p>谁做server，谁做client，则取决于具体数据传输的情况。</p>
+<p>例如，如果活动追踪的BLE设备需要向Android设备传输sensor数据，则活动追踪器自然成为了server端；</p>
+<p>而如果活动追踪器需要从Android设备获取更新信息，则Android设备作为server端可能更合适。</p>
+<h2 id="权限及feature"><a href="#权限及feature" class="headerlink" title="权限及feature"></a>权限及feature</h2><p>和经典蓝牙一样，应用使用蓝牙，需要声明BLUETOOTH权限，</p>
+<p>如果需要扫描设备或者操作蓝牙设置，则还需要BLUETOOTH_ADMIN权限：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:<span class="attribute">name</span>=<span class="string">"android.permission.BLUETOOTH"</span>/&gt;</span><br><span class="line">&lt;uses-permission android:<span class="attribute">name</span>=<span class="string">"android.permission.BLUETOOTH_ADMIN"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>除了蓝牙权限外，如果需要BLE feature则还需要声明uses-feature：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-feature android:<span class="attribute">name</span>=<span class="string">"android.hardware.bluetooth_le"</span> android:<span class="attribute">required</span>=<span class="string">"true"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>按时required为true时，则应用只能在支持BLE的Android设备上安装运行；</p>
+<p>required为false时，Android设备均可正常安装运行，需要在代码运行时判断设备是否支持BLE feature</p>
+<h2 id="通讯设备的主要步骤"><a href="#通讯设备的主要步骤" class="headerlink" title="通讯设备的主要步骤"></a>通讯设备的主要步骤</h2><p>设置权限—&gt;打开蓝牙—&gt;扫描设备—&gt;连接设备—&gt;读写数据+通知设备的状态改变—&gt;断开设备</p>
+<h2 id="BluetoothGatt的服务层次"><a href="#BluetoothGatt的服务层次" class="headerlink" title="BluetoothGatt的服务层次"></a>BluetoothGatt的服务层次</h2><p>BluetoothGatt—&gt;BluetoothGattService(服务)—&gt;BluetoothGattCharacteristic(特征)—&gt;BluetoothGattDescriptor(特性)</p>
+<p>下面的就是重点啦!工具类,工具类,工具类好听的话说三遍<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.annotation.TargetApi;</span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothAdapter;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothDevice;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothGatt;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothGattCallback;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothGattCharacteristic;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothGattDescriptor;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothGattService;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothManager;</span><br><span class="line"><span class="keyword">import</span> android.bluetooth.BluetoothProfile;</span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.content.pm.PackageManager;</span><br><span class="line"><span class="keyword">import</span> android.os.Build;</span><br><span class="line"><span class="keyword">import</span> android.os.Handler;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by shaolin on 6/17/16.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@TargetApi</span>(Build.VERSION_CODES.JELLY_BEAN_MR2)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BleUtil</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"BleUtil"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> SCAN_PERIOD = <span class="number">10000</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String characterUUID1 = <span class="string">"0000fff2-0000-1000-8000-00805f9b34fb"</span>;<span class="comment">//APP发送命令</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String characterUUID2 = <span class="string">"0000fff1-0000-1000-8000-00805f9b34fb"</span>;<span class="comment">//BLE用于回复命令</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String descriptorUUID = <span class="string">"00002902-0000-1000-8000-00805f9b34fb"</span>;<span class="comment">//BLE设备特性的UUID</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] workModel = &#123;<span class="number">0x02</span>, <span class="number">0x01</span>&#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> Context mContext;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> BleUtil mInstance;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//作为中央来使用和处理数据；</span></span><br><span class="line">    <span class="keyword">private</span> BluetoothGatt mGatt;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> BluetoothManager manager;</span><br><span class="line">    <span class="keyword">private</span> BTUtilListener mListener;</span><br><span class="line">    <span class="keyword">private</span> BluetoothDevice mCurDevice;</span><br><span class="line">    <span class="keyword">private</span> BluetoothAdapter mBtAdapter;</span><br><span class="line">    <span class="keyword">private</span> List&lt;BluetoothDevice&gt; listDevice;</span><br><span class="line">    <span class="keyword">private</span> List&lt;BluetoothGattService&gt; serviceList;<span class="comment">//服务</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;BluetoothGattCharacteristic&gt; characterList;<span class="comment">//特征</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> BluetoothGattService service;</span><br><span class="line">    <span class="keyword">private</span> BluetoothGattCharacteristic character1;</span><br><span class="line">    <span class="keyword">private</span> BluetoothGattCharacteristic character2;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> BleUtil <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            mInstance = <span class="keyword">new</span> BleUtil();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mInstance;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContext</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        mContext = context;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        listDevice = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (!mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) &#123;</span><br><span class="line">            showToast(<span class="string">"BLE不支持此设备!"</span>);</span><br><span class="line">            ((Activity) mContext).finish();</span><br><span class="line">        &#125;</span><br><span class="line">        manager = (BluetoothManager) mContext.getSystemService(Context.BLUETOOTH_SERVICE);</span><br><span class="line">        <span class="comment">//注：这里通过getSystemService获取BluetoothManager，</span></span><br><span class="line">        <span class="comment">//再通过BluetoothManager获取BluetoothAdapter。BluetoothManager在Android4.3以上支持(API level 18)。</span></span><br><span class="line">        <span class="keyword">if</span> (manager != <span class="keyword">null</span>) &#123;</span><br><span class="line">            mBtAdapter = manager.getAdapter();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (mBtAdapter == <span class="keyword">null</span> || !mBtAdapter.isEnabled()) &#123;</span><br><span class="line">            mBtAdapter.enable();</span><br><span class="line">            <span class="comment">/*Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);</span></span><br><span class="line"><span class="comment">            mContext.startActivity(enableBtIntent);*/</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//扫描设备的回调</span></span><br><span class="line">    <span class="keyword">private</span> BluetoothAdapter.LeScanCallback mLeScanCallback = <span class="keyword">new</span> BluetoothAdapter.LeScanCallback() &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLeScan</span><span class="params">(<span class="keyword">final</span> BluetoothDevice device, <span class="keyword">int</span> rssi,</span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">byte</span>[] scanRecord)</span> </span>&#123;</span><br><span class="line">            ((Activity) mContext).runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (!listDevice.contains(device)) &#123;</span><br><span class="line">                        <span class="comment">//不重复添加</span></span><br><span class="line">                        listDevice.add(device);</span><br><span class="line">                        mListener.onLeScanDevices(listDevice);</span><br><span class="line">                        Log.e(TAG, <span class="string">"device:"</span> + device.toString());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//扫描设备</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scanLeDevice</span><span class="params">(<span class="keyword">final</span> <span class="keyword">boolean</span> enable)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (enable) &#123;</span><br><span class="line">            Handler mHandler = <span class="keyword">new</span> Handler();</span><br><span class="line">            mHandler.postDelayed(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    stopScan();</span><br><span class="line">                    Log.e(TAG, <span class="string">"run: stop"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, SCAN_PERIOD);</span><br><span class="line">            startScan();</span><br><span class="line">            Log.e(TAG, <span class="string">"start"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stopScan();</span><br><span class="line">            Log.e(TAG, <span class="string">"stop"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//开始扫描BLE设备</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startScan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mBtAdapter.startLeScan(mLeScanCallback);</span><br><span class="line">        mListener.onLeScanStart();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//停止扫描BLE设备</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">stopScan</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mBtAdapter.stopLeScan(mLeScanCallback);</span><br><span class="line">        mListener.onLeScanStop();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//返回中央的状态和周边提供的数据</span></span><br><span class="line">    <span class="keyword">private</span> BluetoothGattCallback mGattCallback = <span class="keyword">new</span> BluetoothGattCallback() &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConnectionStateChange</span><span class="params">(BluetoothGatt gatt, <span class="keyword">int</span> status,</span></span></span><br><span class="line"><span class="function"><span class="params">                                            <span class="keyword">int</span> newState)</span> </span>&#123;</span><br><span class="line">            Log.e(TAG, <span class="string">"onConnectionStateChange"</span>);</span><br><span class="line">            <span class="keyword">switch</span> (newState) &#123;</span><br><span class="line">                <span class="keyword">case</span> BluetoothProfile.STATE_CONNECTED:</span><br><span class="line">                    Log.e(TAG, <span class="string">"STATE_CONNECTED"</span>);</span><br><span class="line">                    mListener.onConnected(mCurDevice);</span><br><span class="line">                    gatt.discoverServices(); <span class="comment">//搜索连接设备所支持的service</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> BluetoothProfile.STATE_DISCONNECTED:</span><br><span class="line">                    mListener.onDisConnected(mCurDevice);</span><br><span class="line">                    disConnGatt();</span><br><span class="line">                    Log.e(TAG, <span class="string">"STATE_DISCONNECTED"</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> BluetoothProfile.STATE_CONNECTING:</span><br><span class="line">                    mListener.onConnecting(mCurDevice);</span><br><span class="line">                    Log.e(TAG, <span class="string">"STATE_CONNECTING"</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> BluetoothProfile.STATE_DISCONNECTING:</span><br><span class="line">                    mListener.onDisConnecting(mCurDevice);</span><br><span class="line">                    Log.e(TAG, <span class="string">"STATE_DISCONNECTING"</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">super</span>.onConnectionStateChange(gatt, status, newState);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onServicesDiscovered</span><span class="params">(BluetoothGatt gatt, <span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">            Log.d(TAG, <span class="string">"onServicesDiscovered"</span>);</span><br><span class="line">            <span class="keyword">if</span> (status == BluetoothGatt.GATT_SUCCESS) &#123;</span><br><span class="line">                serviceList = gatt.getServices();</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; serviceList.size(); i++) &#123;</span><br><span class="line">                    BluetoothGattService theService = serviceList.get(i);</span><br><span class="line"> </span><br><span class="line">                    Log.e(TAG, <span class="string">"ServiceName:"</span> + theService.getUuid());</span><br><span class="line">                    characterList = theService.getCharacteristics();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; characterList.size(); j++) &#123;</span><br><span class="line">                        String uuid = characterList.get(j).getUuid().toString();</span><br><span class="line">                        Log.e(TAG, <span class="string">"---CharacterName:"</span> + uuid);</span><br><span class="line">                        <span class="keyword">if</span> (uuid.equals(characterUUID1)) &#123;</span><br><span class="line">                            character1 = characterList.get(j);</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (uuid.equals(characterUUID2)) &#123;</span><br><span class="line">                            character2 = characterList.get(j);</span><br><span class="line">                            setNotification();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">super</span>.onServicesDiscovered(gatt, status);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCharacteristicRead</span><span class="params">(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, <span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">            Log.e(TAG, <span class="string">"onCharacteristicRead"</span>);</span><br><span class="line">            <span class="keyword">super</span>.onCharacteristicRead(gatt, characteristic, status);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCharacteristicWrite</span><span class="params">(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, <span class="keyword">int</span> status)</span> </span>&#123;</span><br><span class="line">            Log.e(TAG, <span class="string">"onCharacteristicWrite"</span>);</span><br><span class="line">            <span class="keyword">super</span>.onCharacteristicWrite(gatt, characteristic, status);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCharacteristicChanged</span><span class="params">(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic)</span> </span>&#123;</span><br><span class="line">            Log.e(TAG, <span class="string">"onCharacteristicChanged"</span>);</span><br><span class="line"><span class="comment">//            这里是可以监听到设备自身或者手机改变设备的一些数据修改h通知</span></span><br><span class="line">            receiveData(characteristic);</span><br><span class="line">            <span class="keyword">super</span>.onCharacteristicChanged(gatt, characteristic);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//获取设备指定的特征中的特性,其中对其进行监听, setCharacteristicNotification与上面的回调onCharacteristicChanged进行一一搭配</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setNotification</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mGatt.setCharacteristicNotification(character2, <span class="keyword">true</span>);</span><br><span class="line">        BluetoothGattDescriptor descriptor = character2.getDescriptor(UUID.fromString(descriptorUUID));</span><br><span class="line">        descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);</span><br><span class="line">        mGatt.writeDescriptor(descriptor);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//接收数据,对其进行处理</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">receiveData</span><span class="params">(BluetoothGattCharacteristic ch)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = ch.getValue();</span><br><span class="line">        <span class="keyword">int</span> cmd = bytes[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> agree = bytes[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">switch</span> (cmd) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                mListener.onStrength(agree);</span><br><span class="line">                Log.e(TAG, <span class="string">"手机通知BLE设备强度:"</span> + agree);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                mListener.onModel(agree);</span><br><span class="line">                Log.e(TAG, <span class="string">"工作模式:"</span> + agree);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                mListener.onStrength(agree);</span><br><span class="line">                Log.e(TAG, <span class="string">"设备自身通知改变强度:"</span> + agree);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//连接设备</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectLeDevice</span><span class="params">(<span class="keyword">int</span> devicePos)</span> </span>&#123;</span><br><span class="line">        mBtAdapter.stopLeScan(mLeScanCallback);</span><br><span class="line">        mCurDevice = listDevice.get(devicePos);</span><br><span class="line">        checkConnGatt();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//发送进入工作模式请求</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendWorkModel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (character1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            character1.setValue(workModel);</span><br><span class="line">            mGatt.writeCharacteristic(character1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//发送强度</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendStrength</span><span class="params">(<span class="keyword">int</span> strength)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] strengthModel = &#123;<span class="number">0x01</span>, (<span class="keyword">byte</span>) strength&#125;;</span><br><span class="line">        <span class="keyword">if</span> (character1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            character1.setValue(strengthModel);</span><br><span class="line">            mGatt.writeCharacteristic(character1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//检查设备是否连接了</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkConnGatt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mGatt == <span class="keyword">null</span>) &#123;</span><br><span class="line">            mGatt = mCurDevice.connectGatt(mContext, <span class="keyword">true</span>, mGattCallback);</span><br><span class="line">            mListener.onConnecting(mCurDevice);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mGatt.connect();</span><br><span class="line">            mGatt.discoverServices();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//  断开设备连接</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">disConnGatt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mGatt != <span class="keyword">null</span>) &#123;</span><br><span class="line">            mGatt.disconnect();</span><br><span class="line">            mGatt.close();</span><br><span class="line">            mGatt = <span class="keyword">null</span>;</span><br><span class="line">            listDevice = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            mListener.onLeScanDevices(listDevice);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBTUtilListener</span><span class="params">(BTUtilListener listener)</span> </span>&#123;</span><br><span class="line">        mListener = listener;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BTUtilListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onLeScanStart</span><span class="params">()</span></span>; <span class="comment">// 扫描开始</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onLeScanStop</span><span class="params">()</span></span>;  <span class="comment">// 扫描停止</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onLeScanDevices</span><span class="params">(List&lt;BluetoothDevice&gt; listDevice)</span></span>; <span class="comment">//扫描得到的设备</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onConnected</span><span class="params">(BluetoothDevice mCurDevice)</span></span>; <span class="comment">//设备的连接</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onDisConnected</span><span class="params">(BluetoothDevice mCurDevice)</span></span>; <span class="comment">//设备断开连接</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onConnecting</span><span class="params">(BluetoothDevice mCurDevice)</span></span>; <span class="comment">//设备连接中</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onDisConnecting</span><span class="params">(BluetoothDevice mCurDevice)</span></span>; <span class="comment">//设备连接失败</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onStrength</span><span class="params">(<span class="keyword">int</span> strength)</span></span>; <span class="comment">//给设备设置强度</span></span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onModel</span><span class="params">(<span class="keyword">int</span> model)</span></span>; <span class="comment">//设备模式</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参考:<a href="http://www.myext.cn/android/a_4699.html" target="_blank" rel="noopener">http://www.myext.cn/android/a_4699.html</a></p>
+<p>重点:<a href="http://blog.csdn.net/qq_30552993/article/details/51819331" target="_blank" rel="noopener">Android与IOS的UUID的区别</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Wynsbin 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Wynsbin 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Wynsbin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wshaobin.github.io/2018/12/19/ble-1/" title="Android BLE最完整的工具类(扫描/连接/读写/通知设备)">https://wshaobin.github.io/2018/12/19/ble-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+            <a href="/tags/Ble/" rel="tag"><i class="fa fa-tag"></i> Ble</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/19/bugly-upgrade-update/" rel="next" title="Android 腾讯Bugly的应用升级&热更新">
+                <i class="fa fa-chevron-left"></i> Android 腾讯Bugly的应用升级&热更新
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/19/ble-2/" rel="prev" title="Android 蓝牙设备通讯的开发(配对/连接/传输数据)">
+                Android 蓝牙设备通讯的开发(配对/连接/传输数据) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  
+
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTczOC8xODI4NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wynsbin">
+            
+              <p class="site-author-name" itemprop="name">Wynsbin</p>
+              <p class="site-description motion-element" itemprop="description">纵横江湖二十载，得以取名骚剑客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WShaobin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=EyQnISAqJSslJFNiYj1wfH4" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/qq_30552993" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-codiepie"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/c9c7b1275142" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-gratipay"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.csdn.net/qq_30837235" title="请叫我公子
+" target="_blank">请叫我公子</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.csdn.net/qq_32519693" title="JQ专栏" target="_blank">JQ专栏</a>
+                </li>
+            </ul>
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关键概念"><span class="nav-number">1.</span> <span class="nav-text">关键概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generic-Attribute-Profile-GATT"><span class="nav-number">1.1.</span> <span class="nav-text">Generic Attribute Profile (GATT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attribute-Protocol-ATT"><span class="nav-number">1.2.</span> <span class="nav-text">Attribute Protocol (ATT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Characteristic"><span class="nav-number">1.3.</span> <span class="nav-text">Characteristic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Descriptor"><span class="nav-number">1.4.</span> <span class="nav-text">Descriptor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service"><span class="nav-number">1.5.</span> <span class="nav-text">Service</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#角色和职责"><span class="nav-number">2.</span> <span class="nav-text">角色和职责</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限及feature"><span class="nav-number">3.</span> <span class="nav-text">权限及feature</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通讯设备的主要步骤"><span class="nav-number">4.</span> <span class="nav-text">通讯设备的主要步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BluetoothGatt的服务层次"><span class="nav-number">5.</span> <span class="nav-text">BluetoothGatt的服务层次</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1262503479&web_id=1262503479" language="JavaScript"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wynsbin</span>
+
+  <span id="busuanzi_container_site_uv">
+    <i class="fa fa-user-md"></i> 本站访客数：<span id="busuanzi_value_site_uv"></span>
+  </span>
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4
+  
+</div>
+
+
+
+
+<div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </div></footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":false},"log":false});</script></body>
+</html>

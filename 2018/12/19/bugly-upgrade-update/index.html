@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "bdae8d41"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-w.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,Bugly,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wynsbin" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="经过去年的九月份至现在，发现自己很久没有写过比较好的文章了。今天就趁着通宵的劲，写一下对腾讯Bugly的应用升级&amp;amp;热更新的理解，希望对新手有所帮助，有兴趣的可以了解下，没兴趣的也可以看完之后吐槽我。。。">
+<meta name="keywords" content="Android,Bugly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 腾讯Bugly的应用升级&amp;热更新">
+<meta property="og:url" content="https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/index.html">
+<meta property="og:site_name" content="Wynsbin">
+<meta property="og:description" content="经过去年的九月份至现在，发现自己很久没有写过比较好的文章了。今天就趁着通宵的劲，写一下对腾讯Bugly的应用升级&amp;amp;热更新的理解，希望对新手有所帮助，有兴趣的可以了解下，没兴趣的也可以看完之后吐槽我。。。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_1.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_2.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_3.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_4.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_5.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_6.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_7.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_8.png">
+<meta property="og:image" content="https://wshaobin.github.io/images/article/bugly_9.jpg">
+<meta property="og:updated_time" content="2019-10-22T01:19:05.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 腾讯Bugly的应用升级&amp;热更新">
+<meta name="twitter:description" content="经过去年的九月份至现在，发现自己很久没有写过比较好的文章了。今天就趁着通宵的劲，写一下对腾讯Bugly的应用升级&amp;amp;热更新的理解，希望对新手有所帮助，有兴趣的可以了解下，没兴趣的也可以看完之后吐槽我。。。">
+<meta name="twitter:image" content="https://wshaobin.github.io/images/article/bugly_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/">
+
+
+
+
+
+  <title>Android 腾讯Bugly的应用升级&热更新 | Wynsbin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/WShaobin" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wynsbin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">低调做人，高调做事</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wynsbin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wynsbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 腾讯Bugly的应用升级&热更新</h1>
+        
+
+        <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T16:49:09+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>经过去年的九月份至现在，发现自己很久没有写过比较好的文章了。今天就趁着通宵的劲，写一下对腾讯Bugly的应用升级&amp;热更新的理解，希望对新手有所帮助，有兴趣的可以了解下，没兴趣的也可以看完之后吐槽我。。。</p>
+<a id="more"></a>
+<p>Bugly 文档中心：<a href="https://bugly.qq.com/docs/" target="_blank" rel="noopener">https://bugly.qq.com/docs/</a></p>
+<p>官方文档写的还是蛮详细的，不过有些地方还是自己绕了很多弯，请教了公司大神才弄清楚的。</p>
+<p>本篇文章已授权 玩Android 独家发布</p>
+<p>项目配置的话，本人选择直接配置应用升级&amp;热更新。</p>
+<h2 id="配置gradle"><a href="#配置gradle" class="headerlink" title="配置gradle"></a>配置gradle</h2><h3 id="project-build-gradle"><a href="#project-build-gradle" class="headerlink" title="project: build.gradle"></a>project: build.gradle</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.1.3'</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// <span class="doctag">NOTE:</span> Do not place your application dependencies here; they belong</span></span><br><span class="line">        <span class="comment">// in the individual module build.gradle files</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// tinkersupport插件, 其中lastest.release指拉取最新版本，也可以指定明确版本号，例如1.0.4</span></span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">"com.tencent.bugly:tinker-support:1.1.1"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> clean(type: <span class="keyword">Delete</span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> rootProject.buildDir</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="module-build-gradle"><a href="#module-build-gradle" class="headerlink" title="module: build.gradle"></a>module: build.gradle</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.application'</span></span><br><span class="line"><span class="comment">// 热更新依赖插件脚本，如果不想要热更新可以注释掉</span></span><br><span class="line">apply <span class="keyword">from</span>: <span class="string">'tinker-support.gradle'</span></span><br><span class="line"><span class="comment">//全局配置</span></span><br><span class="line">apply <span class="keyword">from</span>: <span class="string">"../config.gradle"</span></span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion compile_sdk_version</span><br><span class="line">    buildToolsVersion build_tools_version</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId <span class="string">"com.example.administrator.myapplication"</span></span><br><span class="line">        minSdkVersion min_sdk_version</span><br><span class="line">        targetSdkVersion target_sdk_version</span><br><span class="line">        versionCode version_code</span><br><span class="line">        versionName version_name</span><br><span class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></span><br><span class="line">        multiDexEnabled <span class="keyword">true</span></span><br><span class="line">        multiDexKeepProguard <span class="keyword">file</span>(<span class="string">'multiDexKeep.pro'</span>)</span><br><span class="line">        ndk &#123;</span><br><span class="line">            <span class="comment">// 设置支持的SO库架构</span></span><br><span class="line">            abiFilters <span class="string">'armeabi'</span>, <span class="string">'x86'</span>, <span class="string">'armeabi-v7a'</span>, <span class="string">'arm64-v8a'</span> <span class="comment">//, 'x86_64'</span></span><br><span class="line">        &#125;</span><br><span class="line">        javaCompileOptions &#123;</span><br><span class="line">            annotationProcessorOptions &#123;</span><br><span class="line">                includeCompileClasspath <span class="keyword">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">            keyAlias <span class="string">'debug'</span></span><br><span class="line">            keyPassword <span class="string">'123456'</span></span><br><span class="line">            storeFile <span class="keyword">file</span>(<span class="string">'../debug.jks'</span>)</span><br><span class="line">            storePassword <span class="string">'123456'</span></span><br><span class="line">            v1SigningEnabled <span class="keyword">true</span></span><br><span class="line">            v2SigningEnabled <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        release &#123;</span><br><span class="line">            v1SigningEnabled <span class="keyword">true</span></span><br><span class="line">            v2SigningEnabled <span class="keyword">false</span></span><br><span class="line">            keyAlias <span class="string">'key0'</span></span><br><span class="line">            keyPassword <span class="string">'123456'</span></span><br><span class="line">            storeFile <span class="keyword">file</span>(<span class="string">'../release.jks'</span>)</span><br><span class="line">            storePassword <span class="string">'123456'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            debuggable log_debug</span><br><span class="line">            shrinkResources <span class="keyword">false</span></span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            zipAlignEnabled <span class="keyword">true</span></span><br><span class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></span><br><span class="line">            signingConfig signingConfigs.release</span><br><span class="line">            buildConfigField(<span class="string">"boolean"</span>, <span class="string">"LOG_DEBUG"</span>, String.valueOf(log_debug))</span><br><span class="line">        &#125;</span><br><span class="line">        debug &#123;</span><br><span class="line">            debuggable <span class="keyword">true</span></span><br><span class="line">            jniDebuggable <span class="keyword">true</span></span><br><span class="line">            signingConfig signingConfigs.debug</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            zipAlignEnabled <span class="keyword">false</span></span><br><span class="line">            buildConfigField(<span class="string">"boolean"</span>, <span class="string">"LOG_DEBUG"</span>, String.valueOf(log_debug))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dexOptions &#123;</span><br><span class="line"><span class="comment">//        incremental true</span></span><br><span class="line"><span class="comment">//        maxProcessCount 2</span></span><br><span class="line">        javaMaxHeapSize <span class="string">"4g"</span></span><br><span class="line">        jumboMode = <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    lintOptions &#123;</span><br><span class="line">        checkReleaseBuilds <span class="keyword">false</span></span><br><span class="line">        abortOnError <span class="keyword">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">sourceSets</span> &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            jniLibs.srcDirs = [<span class="string">'libs'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        <span class="keyword">flatDir</span> &#123;</span><br><span class="line">            dirs <span class="string">'libs'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(dir: <span class="string">'libs'</span>, <span class="keyword">include</span>: [<span class="string">'*.jar'</span>])</span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support.constraint:constraint-layout:1.1.2'</span></span><br><span class="line">    testCompile <span class="string">'junit:junit:4.12'</span></span><br><span class="line">    androidTestCompile <span class="string">'com.android.support.test:runner:1.0.2'</span></span><br><span class="line">    androidTestCompile <span class="string">"com.android.support:support-annotations:$support_library_version"</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">"com.android.support:appcompat-v7:$support_library_version"</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">"com.android.support:support-v4:$support_library_version"</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">"com.android.support:multidex:1.0.3"</span> <span class="comment">// 多dex配置</span></span><br><span class="line">    <span class="comment">//------------------Bugly---------------------------------------------------------</span></span><br><span class="line">    <span class="comment">//    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'</span></span><br><span class="line">    <span class="comment">//    compile 'com.tencent.bugly:nativecrashreport:latest.release'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.tencent.bugly:crashreport_upgrade:1.3.4'</span></span><br><span class="line">    <span class="comment">//升级SDK已经集成crash上报功能</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.tencent.bugly:nativecrashreport:3.3.1'</span></span><br><span class="line">    <span class="comment">//------------------Bugly---------------------------------------------------------</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tinker-support-gradle"><a href="#tinker-support-gradle" class="headerlink" title="tinker-support.gradle"></a>tinker-support.gradle</h3><p>注：您需要在同级目录下创建tinker-support.gradle热更新配置文件<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: 'com.tencent.bugly.tinker-support'</span><br><span class="line"></span><br><span class="line">def <span class="attr">bakPath</span> = file(<span class="string">"<span class="subst">$&#123;buildDir&#125;</span>/bakApk/"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 此处填写每次构建生成的基准包目录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">def <span class="attr">baseApkDir</span> = <span class="string">"app-0710-15-48-49"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对于插件各参数的详细解析请参考</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">tinkerSupport &#123;</span><br><span class="line"></span><br><span class="line">    // 开启tinker-support插件，默认值<span class="literal">true</span></span><br><span class="line">    <span class="attr">enable</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    // 指定归档目录，默认值当前module的子目录tinker</span><br><span class="line">    <span class="attr">autoBackupApkDir</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">    // 是否启用覆盖tinkerPatch配置功能，默认值<span class="literal">false</span></span><br><span class="line">    // 开启后tinkerPatch配置不生效，即无需添加tinkerPatch</span><br><span class="line">    <span class="attr">overrideTinkerPatchConfiguration</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    // 编译补丁包时，必需指定基线版本的apk，默认值为空</span><br><span class="line">    // 如果为空，则表示不是进行补丁包的编译</span><br><span class="line">    // @&#123;link tinkerPatch.oldApk &#125;</span><br><span class="line">    <span class="attr">baseApk</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>/app-release.apk"</span></span><br><span class="line">//    <span class="attr">baseApk</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>/app-debug.apk"</span></span><br><span class="line"></span><br><span class="line">    // 对应tinker插件applyMapping</span><br><span class="line">    <span class="attr">baseApkProguardMapping</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>/app-release-mapping.txt"</span></span><br><span class="line">//    <span class="attr">baseApkProguardMapping</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>/app-debug-mapping.txt"</span></span><br><span class="line"></span><br><span class="line">    // 对应tinker插件applyResourceMapping</span><br><span class="line">    <span class="attr">baseApkResourceMapping</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>/app-release-R.txt"</span></span><br><span class="line">    //  <span class="attr">baseApkResourceMapping</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>/app-debug-R.txt"</span></span><br><span class="line"></span><br><span class="line">    // 构建基准包和补丁包都要指定不同的tinkerId，并且必须保证唯一性</span><br><span class="line">    // **基准包这里最好是改成base-versionname,patch包就改成patch-versionname,每个版本的都不一样**</span><br><span class="line">    <span class="attr">tinkerId</span> = <span class="string">"patch-1.0.1"</span></span><br><span class="line"></span><br><span class="line">    // 构建多渠道补丁时使用</span><br><span class="line">    // <span class="attr">buildAllFlavorsDir</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;baseApkDir&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">    // 是否启用加固模式，默认为<span class="literal">false</span>.(tinker-spport <span class="number">1.0</span>.<span class="number">7</span>起支持）</span><br><span class="line">    //tinker <span class="number">1.7</span>.<span class="number">8</span>版本及以上版本</span><br><span class="line">//    <span class="attr">isProtectedApp</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    // 是否开启反射Application模式</span><br><span class="line">    <span class="attr">enableProxyApplication</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一般来说,我们无需对下面的参数做任何的修改</span></span><br><span class="line"><span class="comment"> * 对于各参数的详细介绍请参考:</span></span><br><span class="line"><span class="comment"> * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">tinkerPatch &#123;</span><br><span class="line">    //<span class="attr">oldApk</span> =<span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;appName&#125;</span>/app-release.apk"</span></span><br><span class="line">    <span class="attr">ignoreWarning</span> = <span class="literal">false</span></span><br><span class="line">    <span class="attr">useSign</span> = <span class="literal">true</span></span><br><span class="line">    dex &#123;</span><br><span class="line">        <span class="attr">dexMode</span> = <span class="string">"jar"</span></span><br><span class="line">        <span class="attr">pattern</span> = [<span class="string">"classes*.dex"</span>]</span><br><span class="line">        <span class="attr">loader</span> = []</span><br><span class="line">    &#125;</span><br><span class="line">    lib &#123;</span><br><span class="line">        <span class="attr">pattern</span> = [<span class="string">"lib/*/*.so"</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res &#123;</span><br><span class="line">        <span class="attr">pattern</span> = [<span class="string">"res/*"</span>, <span class="string">"r/*"</span>, <span class="string">"assets/*"</span>, <span class="string">"resources.arsc"</span>, <span class="string">"AndroidManifest.xml"</span>]</span><br><span class="line">        <span class="attr">ignoreChange</span> = []</span><br><span class="line">        <span class="attr">largeModSize</span> = <span class="number">100</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    packageConfig &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    sevenZip &#123;</span><br><span class="line">        <span class="attr">zipArtifact</span> = <span class="string">"com.tencent.mm:SevenZip:1.1.10"</span></span><br><span class="line">//        <span class="attr">path</span> = <span class="string">"/usr/local/bin/7za"</span></span><br><span class="line">    &#125;</span><br><span class="line">    buildConfig &#123;</span><br><span class="line">        <span class="attr">keepDexApply</span> = <span class="literal">false</span></span><br><span class="line">        //<span class="attr">tinkerId</span> = <span class="string">"1.0.1-base"</span></span><br><span class="line">        //<span class="attr">applyMapping</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;appName&#125;</span>/app-release-mapping.txt"</span> //  可选，设置mapping文件，建议保持旧apk的proguard混淆方式</span><br><span class="line">        //<span class="attr">applyResourceMapping</span> = <span class="string">"<span class="subst">$&#123;bakPath&#125;</span>/<span class="subst">$&#123;appName&#125;</span>/app-release-R.txt"</span> // 可选，设置R.txt文件，通过旧apk文件保持ResId的分配</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基准包一般都是以app-release.apk正式版，如果想要用debug版的话，上面的baseApk、baseApkProguardMapping、baseApkResourceMapping切换下。</p>
+<h3 id="全局配置-config-gradle"><a href="#全局配置-config-gradle" class="headerlink" title="全局配置: config.gradle"></a>全局配置: config.gradle</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ext<span class="selector-class">.target_sdk_version</span> = <span class="number">27</span></span><br><span class="line">ext<span class="selector-class">.min_sdk_version</span> = <span class="number">19</span></span><br><span class="line">ext<span class="selector-class">.compile_sdk_version</span> = <span class="number">27</span></span><br><span class="line">ext<span class="selector-class">.build_tools_version</span> = <span class="string">'27.0.3'</span></span><br><span class="line">ext<span class="selector-class">.support_library_version</span> = <span class="string">'27.1.1'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//TODO 调试模式的开启关闭</span></span><br><span class="line">ext<span class="selector-class">.log_debug</span> = false</span><br><span class="line">ext<span class="selector-class">.version_code</span> = <span class="number">1</span></span><br><span class="line">ext<span class="selector-class">.version_name</span> = <span class="string">"1.0.1"</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置multiDexKeep"><a href="#配置multiDexKeep" class="headerlink" title="配置multiDexKeep"></a>配置multiDexKeep</h2><p><strong>Bugly MultiDex注意事项，把Bugly的类放到主Dex,即写在multiDexKeep.pro</strong></p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby">keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">tencent</span>.<span class="title">bugly</span>.** &#123;*;</span>&#125;</span></span><br><span class="line"><span class="ruby">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">example</span>.<span class="title">administrator</span>.<span class="title">myapplication</span>.<span class="title">AppLike</span>&#123;*;</span>&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这里你的AppLike放在那里，对应修改其路径</p>
+<p>附上项目目录结构图，在说明相对应的配置<br><img src="/images/article/bugly_1.png" alt="在这里插入图片描述"><br><img src="/images/article/bugly_2.png" alt="在这里插入图片描述"></p>
+<h2 id="配置XML"><a href="#配置XML" class="headerlink" title="配置XML"></a>配置XML</h2><h3 id="权限、activity、provider"><a href="#权限、activity、provider" class="headerlink" title="权限、activity、provider"></a>权限、activity、provider</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span></span><br><span class="line"><span class="xml">    xmlns:tools="http://schemas.android.com/tools"</span></span><br><span class="line"><span class="xml">    package="com.example.administrator.myapplication"&gt;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_LOGS"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">application</span></span></span></span><br><span class="line"><span class="xml">        android:name=".App"</span></span><br><span class="line"><span class="xml">        android:allowBackup="true"</span></span><br><span class="line"><span class="xml">        android:icon="@mipmap/ic_launcher"</span></span><br><span class="line"><span class="xml">        android:label="@string/app_name"</span></span><br><span class="line"><span class="xml">        android:roundIcon="@mipmap/ic_launcher_round"</span></span><br><span class="line"><span class="xml">        android:supportsRtl="true"</span></span><br><span class="line"><span class="xml">        android:theme="@style/AppTheme"&gt;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- Bugly --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">activity</span></span></span></span><br><span class="line"><span class="xml">            android:name="com.tencent.bugly.beta.ui.BetaActivity"</span></span><br><span class="line"><span class="xml">            android:configChanges="keyboardHidden|orientation|screenSize|locale"</span></span><br><span class="line"><span class="xml">            android:theme="@android:style/Theme.Translucent" /&gt;</span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- Bugly --&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 用于兼容7.0以上设备 --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">provider</span></span></span></span><br><span class="line"><span class="xml">            android:name=".MyFileProvider"</span></span><br><span class="line"><span class="xml">            android:authorities="$</span><span class="template-variable">&#123;applicationId&#125;</span><span class="xml">.fileProvider"</span></span><br><span class="line"><span class="xml">            android:exported="false"</span></span><br><span class="line"><span class="xml">            android:grantUriPermissions="true"</span></span><br><span class="line"><span class="xml">            tools:replace="name,authorities,exported,grantUriPermissions"&gt;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">meta-data</span></span></span></span><br><span class="line"><span class="xml">                android:name="android.support.FILE_PROVIDER_PATHS"</span></span><br><span class="line"><span class="xml">                android:resource="@xml/provider_paths"</span></span><br><span class="line"><span class="xml">                tools:replace="name,resource" /&gt;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="provider-paths-xml"><a href="#provider-paths-xml" class="headerlink" title="provider_paths.xml"></a>provider_paths.xml</h3><p>在res目录新建xml文件夹，创建provider_paths.xml文件如下：</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">paths</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--Bugly:这里配置的两个外部存储路径是升级SDK下载的文件可能存在的路径，一定要按照上面格式配置，不然可能会出现错误。--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- /storage/emulated/0/Download/$</span></span><span class="template-variable">&#123;applicationId&#125;</span><span class="xml"><span class="comment">/.beta/apk--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">external-path</span></span></span></span><br><span class="line"><span class="xml">        name="beta_external_path"</span></span><br><span class="line"><span class="xml">        path="Download/" /&gt;</span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--/storage/emulated/0/Android/data/$</span></span><span class="template-variable">&#123;applicationId&#125;</span><span class="xml"><span class="comment">/files/apk/--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">external-path</span></span></span></span><br><span class="line"><span class="xml">        name="beta_external_files_path"</span></span><br><span class="line"><span class="xml">        path="Android/data/" /&gt;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">root-path</span></span></span></span><br><span class="line"><span class="xml">        name="root"</span></span><br><span class="line"><span class="xml">        path="root/" /&gt;</span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--代表设备的根目录new File("/");--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">files-path</span></span></span></span><br><span class="line"><span class="xml">        name="my_image"</span></span><br><span class="line"><span class="xml">        path="images/" /&gt;</span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--代表context.getFilesDir()--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">cache-path</span></span></span></span><br><span class="line"><span class="xml">        name="cache"</span></span><br><span class="line"><span class="xml">        path="caches/" /&gt;</span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--代表context.getCacheDir()--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">external-path</span></span></span></span><br><span class="line"><span class="xml">        name="my_dir"</span></span><br><span class="line"><span class="xml">        path="dirs/" /&gt;</span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--代表Environment.getExternalStorageDirectory()--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--&lt;external-files-path/&gt;--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--代表context.getExternalFilesDirs()--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--&lt;external-cache-path/&gt;--&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!--代表getExternalCacheDirs()--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="代码模块"><a href="#代码模块" class="headerlink" title="代码模块"></a>代码模块</h2><h3 id="App-java"><a href="#App-java" class="headerlink" title="App.java"></a>App.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">TinkerApplication</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> App mInstance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">App</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    <span class="comment">//同样修改成自己AppLike的路径</span></span><br><span class="line">        <span class="keyword">super</span>(ShareConstants.TINKER_ENABLE_ALL, <span class="string">"com.example.administrator.myapplication.AppLike"</span>,</span><br><span class="line">                <span class="string">"com.tencent.tinker.loader.TinkerLoader"</span>, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> App <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mInstance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        mInstance = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="AppLike-java"><a href="#AppLike-java" class="headerlink" title="AppLike.java"></a>AppLike.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppLike</span> <span class="keyword">extends</span> <span class="title">DefaultApplicationLike</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Tinker.AppLike"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppLike</span><span class="params">(Application application, <span class="keyword">int</span> tinkerFlags,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">boolean</span> tinkerLoadVerifyFlag, <span class="keyword">long</span> applicationStartElapsedTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">long</span> applicationStartMillisTime, Intent tinkerResultIntent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        <span class="comment">//设置自定义升级对话框UI布局</span></span><br><span class="line">        Beta.upgradeDialogLayoutId = R.layout.upgrade_dialog;</span><br><span class="line">        <span class="comment">//添加可显示弹窗的Activity</span></span><br><span class="line">        Beta.canShowUpgradeActs.add(MainActivity.class);</span><br><span class="line">        <span class="comment">//TODO 初始化,AppID替换成平台上项目中产品信息的AppID</span></span><br><span class="line">		Bugly.init(getApplication(), <span class="string">"AppID"</span>, BuildConfig.LOG_DEBUG);</span><br><span class="line">        <span class="comment">//  Q：你们是怎么定义开发设备的？</span></span><br><span class="line">        <span class="comment">//  BitmapQrCodeDecoder：我们会提供接口Bugly.setIsDevelopmentDevice(getApplicationContext(), true);，</span></span><br><span class="line">        <span class="comment">//  我们后台就会将你当前设备识别为开发设备，如果设置为false则非开发设备，我们会根据这个配置进行策略控制。</span></span><br><span class="line">        Bugly.setIsDevelopmentDevice(getApplication(), BuildConfig.LOG_DEBUG);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TargetApi</span>(Build.VERSION_CODES.ICE_CREAM_SANDWICH)</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBaseContextAttached</span><span class="params">(Context base)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onBaseContextAttached(base);</span><br><span class="line">        MultiDex.install(base);</span><br><span class="line">        <span class="comment">// 安装tinker</span></span><br><span class="line">        <span class="comment">// TinkerManager.installTinker(this); 替换成下面Bugly提供的方法</span></span><br><span class="line">        Beta.installTinker(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TargetApi</span>(Build.VERSION_CODES.ICE_CREAM_SANDWICH)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerActivityLifecycleCallback</span><span class="params">(Application.ActivityLifecycleCallbacks callbacks)</span> </span>&#123;</span><br><span class="line">        getApplication().registerActivityLifecycleCallbacks(callbacks);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="MyFileProvider-java"><a href="#MyFileProvider-java" class="headerlink" title="MyFileProvider.java"></a>MyFileProvider.java</h3><p>这里要注意一下，AndroidManifest.xml中的FileProvider类是在support-v4包中的，检查你的工程是否引入该类库，项目中新建一个MyFileProvider.java</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyFileProvider</span> <span class="keyword">extends</span> <span class="title">FileProvider</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="打包及发布的流程"><a href="#打包及发布的流程" class="headerlink" title="打包及发布的流程"></a>打包及发布的流程</h2><p>1、如果你还不知道怎么打包的话，可以看下图。如果知道的话可以看下如何打补丁包，双击一下等待数秒就打包好了。</p>
+<p><img src="/images/article/bugly_3.png" alt="在这里插入图片描述"></p>
+<p>2、打完包的apk跟补丁包文件目录<br><img src="/images/article/bugly_4.png" alt="在这里插入图片描述"></p>
+<p>bakApk中app-xxx目录下的apk为基准包（可以用于官网中全量更新：发布新版本）<br>patch目录下的patch_signed_7zip.apk为补丁包（可以用于官网热更新：发布新补丁）</p>
+<p>3、打包需要修改配置如下</p>
+<ul>
+<li>config.gradle</li>
+</ul>
+<blockquote>
+<p>ext.log_debug = false<br>ext.version_code = 1<br>ext.version_name = “1.0.1”</p>
+</blockquote>
+<ul>
+<li>tinker-support.gradle</li>
+</ul>
+<blockquote>
+<p>def baseApkDir = “app-0710-18-39-06”<br>tinkerId = “patch-1.0.1”</p>
+</blockquote>
+<p><strong>项目版本打包，首先要确定如下配置</strong></p>
+<blockquote>
+<p>ext.log_debug = false  //调试模式的开启关闭，正式包要改成false<br>ext.version_code = 1<br>ext.version_name = “1.0.1”<br>tinkerId = “patch-1.0.1” // tinkerId=patch-version_name</p>
+</blockquote>
+<p>点击上图中的assembleRelease进行打正式包，生成app-0710-18-39-06下的app-release.apk(<em>这个就是正式包，也算是基准包</em>)，然后把apk上传到bugly，如下图</p>
+<p><img src="/images/article/bugly_5.png" alt="在这里插入图片描述"></p>
+<p>图中第三步，可以修改更新提示框，例如：AppLike.class中的Beta.upgradeDialogLayoutId = R.layout.upgrade_dialog;<br>只需在项目中新建一个布局，不过那些按钮等都要设置对应的tag，才会起作用，具体看<a href="https://bugly.qq.com/docs/user-guide/advance-features-android-beta/?v=20180709165613" target="_blank" rel="noopener">Bugly Android 应用升级 SDK 高级配置</a></p>
+<p>特别要注意的是：打包成功之后，最好把app-0710-18-39-06文件夹保存起来。为什么？</p>
+<p>比如现在版本上线，突然出现一个重大bug，这时候可以选择用热更新进行修复。你也不用重新多弄个版本，用户也不用去重新下载apk。</p>
+<p><strong>然后项目打补丁包，需要如下配置</strong></p>
+<blockquote>
+<p>def baseApkDir = “app-0710-18-39-06”  </p>
+</blockquote>
+<p>这里的app-0710-18-39-06就是刚刚说要保存的基准包对应的文件名</p>
+<p>弄完之后就上传补丁包，如下图<br><img src="/images/article/bugly_6.png" alt="在这里插入图片描述"></p>
+<p>一般确认无误的情况，下发范围都是选择全部设备。</p>
+<p>如果你想选择开发设备进行补丁包测试的话，那么又要修改如下配置，首先修改 ext.log_debug = true。</p>
+<p>打包app-0710-18-39-06（包1）：ext.log_debug = false（作为全部设备使用）<br>打包app-0710-18-40-40（包2）：ext.log_debug = true（作为开发设备使用）</p>
+<p>这两个app-××× 都是相继打包出来的，也就是上面说的保存包1的时候，顺便改为true打包出包2，两个都一起保存起来，然后才有以下补丁包的说法。</p>
+<p>具体流程如如下，画得有点丑，凑合着看呗（宝图哦）</p>
+<p><img src="/images/article/bugly_7.png" alt="在这里插入图片描述"></p>
+<hr>
+<p><strong>最后经过多轮测试，发现打补丁时，baseApkDir必须是认准基准包的。而tinkerid可以不用是patch-versionname,但必须不能与之前的tinkerid重复。</strong></p>
+<hr>
+<p><a href="https://github.com/WShaobin/BuglyDemo/tree/master" target="_blank" rel="noopener">文章涉及到的Demo，已上传至github</a></p>
+<hr>
+<p>这里遇到一个坑，就是发布app之后，被“强制停止了”，然后重启提示“启动策略失败”。</p>
+<p>原来是下发上限跟激活上限的问题，修改成100w就ok了<br><img src="/images/article/bugly_8.png" alt="在这里插入图片描述"></p>
+<hr>
+<p>以上都是本人的一些见解，如有误点请帮忙指正，谢谢！！</p>
+<p>看到这里的话，累了吧，分享个小姐姐给你认识</p>
+<p><img src="/images/article/bugly_9.jpg" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Wynsbin 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Wynsbin 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Wynsbin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/" title="Android 腾讯Bugly的应用升级&热更新">https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+            <a href="/tags/Bugly/" rel="tag"><i class="fa fa-tag"></i> Bugly</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/19/ble-1/" rel="prev" title="Android BLE最完整的工具类(扫描/连接/读写/通知设备)">
+                Android BLE最完整的工具类(扫描/连接/读写/通知设备) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  
+
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTczOC8xODI4NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wynsbin">
+            
+              <p class="site-author-name" itemprop="name">Wynsbin</p>
+              <p class="site-description motion-element" itemprop="description">纵横江湖二十载，得以取名骚剑客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WShaobin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=EyQnISAqJSslJFNiYj1wfH4" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/qq_30552993" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-codiepie"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/c9c7b1275142" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-gratipay"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.csdn.net/qq_30837235" title="请叫我公子
+" target="_blank">请叫我公子</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.csdn.net/qq_32519693" title="JQ专栏" target="_blank">JQ专栏</a>
+                </li>
+            </ul>
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gradle"><span class="nav-number">1.</span> <span class="nav-text">配置gradle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#project-build-gradle"><span class="nav-number">1.1.</span> <span class="nav-text">project: build.gradle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#module-build-gradle"><span class="nav-number">1.2.</span> <span class="nav-text">module: build.gradle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tinker-support-gradle"><span class="nav-number">1.3.</span> <span class="nav-text">tinker-support.gradle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局配置-config-gradle"><span class="nav-number">1.4.</span> <span class="nav-text">全局配置: config.gradle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置multiDexKeep"><span class="nav-number">2.</span> <span class="nav-text">配置multiDexKeep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置XML"><span class="nav-number">3.</span> <span class="nav-text">配置XML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#权限、activity、provider"><span class="nav-number">3.1.</span> <span class="nav-text">权限、activity、provider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#provider-paths-xml"><span class="nav-number">3.2.</span> <span class="nav-text">provider_paths.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码模块"><span class="nav-number">4.</span> <span class="nav-text">代码模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#App-java"><span class="nav-number">4.1.</span> <span class="nav-text">App.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppLike-java"><span class="nav-number">4.2.</span> <span class="nav-text">AppLike.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyFileProvider-java"><span class="nav-number">4.3.</span> <span class="nav-text">MyFileProvider.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包及发布的流程"><span class="nav-number">5.</span> <span class="nav-text">打包及发布的流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1262503479&web_id=1262503479" language="JavaScript"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wynsbin</span>
+
+  <span id="busuanzi_container_site_uv">
+    <i class="fa fa-user-md"></i> 本站访客数：<span id="busuanzi_value_site_uv"></span>
+  </span>
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4
+  
+</div>
+
+
+
+
+<div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </div></footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":false},"log":false});</script></body>
+</html>
