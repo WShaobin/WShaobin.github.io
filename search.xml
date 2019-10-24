@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Git工作流程+常用命令]]></title>
+    <url>%2F2019%2F10%2F24%2Fgit-command%2F</url>
+    <content type="text"><![CDATA[Git工作流程+常用命令流程图 Git工作流程 以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。 Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 Git常用命令 参考 Git最全命令]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Chrome打开应用商店及推荐实用插件]]></title>
     <url>%2F2019%2F01%2F08%2Fchrome-plugin%2F</url>
-    <content type="text"><![CDATA[解决Chrome打不开的问题，推荐开发使用的优质插件 Chrome应用商店进不了的解决方案 通过修改hosts文件等等 谷歌访问助手，根据自己使用的浏览器点击对应版本的插件，下载地址 实用插件 二维码(QR码)生成器 模拟其他浏览器访问的谷歌浏览器 网络请求：Postman 过滤广告：Adblock Plus 方便 github 项目结构查看 json结构树查看 划词翻译]]></content>
+    <content type="text"><![CDATA[解决Chrome打不开的问题，推荐开发使用的优质插件 解决方案 通过修改hosts文件等等 谷歌访问助手，根据自己使用的浏览器点击对应版本的插件，下载地址 实用插件 二维码(QR码)生成器 模拟其他浏览器访问的谷歌浏览器 网络请求：Postman 过滤广告：Adblock Plus 方便 github 项目结构查看 json结构树查看 划词翻译]]></content>
       <categories>
         <category>Chrome</category>
       </categories>
@@ -12,9 +23,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[使用Git将本地项目上传到Github]]></title>
-    <url>%2F2018%2F12%2F22%2FGit-Upload-Project%2F</url>
-    <content type="text"><![CDATA[全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github 创建本地版本库其实这里就是你要上传的那个项目文件（例如：Project） Git初始化对着Project右键,选择Git bash here,通过命令git init把这个文件夹变成Git可管理的仓库 这时你会发现Project里面多了个.git文件夹，它是Git用来跟踪和管理版本库的。如果你看不到，是因为它默认是隐藏文件，那你就需要设置一下让隐藏文件可见。 项目添加到本地仓库你的项目粘贴到这个本地Git仓库里面（粘贴后你可以通过git status来查看你当前的状态），然后通过git add把项目添加到仓库（或git add .把该目录下的所有文件添加到仓库，注意点是用空格隔开的）。在这个过程中你其实可以一直使用git status来查看你当前的状态。 提交到仓库用git commit把项目提交到仓库，-m后面引号里面是本次提交的注释内容,命令如下 git commit -m &quot;注解内容&quot; 下面就是上传了，如果没有配置SSH的话，可以先配置一下，这里不做详细的介绍了 创建远程仓库在Github上创建一个Git仓库，你可以直接点New repository来创建，比如我创建了一个Project的仓库 关联本地仓库在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地Project仓库的命令行输入： git remote add origin https://github.com/WShaobin/Project.git 这里可以是HTTPS或者SSH,二则选其一就行 推送到远程仓库关联好之后我们就可以把本地库的所有内容推送到远程仓库（也就是Github）上了，通过： git push -u origin master 由于新建的远程仓库是空的，所以要加上-u这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了： git push origin master 至此就完成了将本地项目上传到Github的整个过程。 另外，如果你在git push 的时候出现如下报错。 原因是你勾选了Initialize this repository with a README，就是创建仓库的时候自动给你创建一个README文件，而本地仓库没有README文件，这时我们可以通过以下命令先将内容合并以下： git pull --rebase origin master 然后重新push就成功了 Git忽略遇到的问题在添加.gitignore文件后，当想push文件的时候，声明的忽略文件还是会出现在push的目录中 原因分析某些文件已经被纳入版本管理中，就算是在.gitignore中已经声明也不会起作用 解决方案我们应该先把本地的缓存删除，然后再进行push，操作步骤如下 123git rm -r --cached . // 删除本地缓存git add . // 添加要提交的文件git commit -m 'update .gitignore' // 更新本地的缓存 总结初次上传12345git initgit add .git commit -m "注解内容"git remote add origin https://github.com/xxx/xxx.gitgit push -u origin master 如果git push时，报了git pull…的错，可以使用如下命令： 1git pull --rebase origin master 二次上传123git add .git commit -m "注解内容"git push origin master]]></content>
+    <title><![CDATA[Git上传本地项目到Github]]></title>
+    <url>%2F2018%2F12%2F22%2Fgit-upload-project%2F</url>
+    <content type="text"><![CDATA[全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github 创建本地版本库其实这里就是你要上传的那个项目文件（例如：Project） Git初始化对着Project右键,选择Git bash here,通过命令git init把这个文件夹变成Git可管理的仓库 这时你会发现Project里面多了个.git文件夹，它是Git用来跟踪和管理版本库的。如果你看不到，是因为它默认是隐藏文件，那你就需要设置一下让隐藏文件可见。 项目添加到本地仓库你的项目粘贴到这个本地Git仓库里面（粘贴后你可以通过git status来查看你当前的状态），然后通过git add把项目添加到仓库（或git add .把该目录下的所有文件添加到仓库，注意点是用空格隔开的）。在这个过程中你其实可以一直使用git status来查看你当前的状态。 提交到仓库用git commit把项目提交到仓库，-m后面引号里面是本次提交的注释内容,命令如下 git commit -m &quot;注解内容&quot; 下面就是上传了，如果没有配置SSH的话，可以先配置一下，这里不做详细的介绍了 创建远程仓库在Github上创建一个Git仓库，你可以直接点New repository来创建，比如我创建了一个Project的仓库 关联本地仓库在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地Project仓库的命令行输入： git remote add origin https://github.com/WShaobin/Project.git 这里可以是HTTPS或者SSH,二则选其一就行 推送到远程仓库关联好之后我们就可以把本地库的所有内容推送到远程仓库（也就是Github）上了，通过： git push -u origin master 由于新建的远程仓库是空的，所以要加上-u这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了： git push origin master 至此就完成了将本地项目上传到Github的整个过程。 另外，如果你在git push 的时候出现如下报错。 原因是你勾选了Initialize this repository with a README，就是创建仓库的时候自动给你创建一个README文件，而本地仓库没有README文件，这时我们可以通过以下命令先将内容合并以下： git pull --rebase origin master 然后重新push就成功了 Git忽略遇到的问题在添加.gitignore文件后，当想push文件的时候，声明的忽略文件还是会出现在push的目录中 原因分析某些文件已经被纳入版本管理中，就算是在.gitignore中已经声明也不会起作用 解决方案我们应该先把本地的缓存删除，然后再进行push，操作步骤如下 123git rm -r --cached . // 删除本地缓存git add . // 添加要提交的文件git commit -m 'update .gitignore' // 更新本地的缓存 总结初次上传12345git initgit add .git commit -m "注解内容"git remote add origin https://github.com/xxx/xxx.gitgit push -u origin master 如果git push时，报了git pull…的错，可以使用如下命令： 1git pull --rebase origin master 二次上传123git add .git commit -m "注解内容"git push origin master 参考 Git上传项目]]></content>
       <categories>
         <category>Git</category>
       </categories>
