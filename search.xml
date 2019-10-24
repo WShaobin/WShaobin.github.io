@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Git工作流程+常用命令]]></title>
     <url>%2F2019%2F10%2F24%2Fgit-command%2F</url>
-    <content type="text"><![CDATA[Git工作流程+常用命令流程图 Git工作流程 以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。 Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 Git常用命令 参考 Git最全命令]]></content>
+    <content type="text"><![CDATA[Git工作流程+常用命令流程图 Git工作流程 以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。 Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 Git常用命令查看远程仓库地址：git remote -v 修改远程地址：git remote set-url origin http://xxxx/xxx.git(后面是新地址) 参考 Git最全命令]]></content>
       <categories>
         <category>Git</category>
       </categories>

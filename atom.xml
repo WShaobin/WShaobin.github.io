@@ -5,9 +5,9 @@
   <subtitle>低调做人，高调做事</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://wshaobin.github.io/"/>
-  <updated>2019-10-24T07:15:48.180Z</updated>
-  <id>https://wshaobin.github.io/</id>
+  <link href="https://wynsbin.github.io/"/>
+  <updated>2019-10-24T09:03:42.023Z</updated>
+  <id>https://wynsbin.github.io/</id>
   
   <author>
     <name>Wynsbin</name>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>Git工作流程+常用命令</title>
-    <link href="https://wshaobin.github.io/2019/10/24/git-command/"/>
-    <id>https://wshaobin.github.io/2019/10/24/git-command/</id>
+    <link href="https://wynsbin.github.io/2019/10/24/git-command/"/>
+    <id>https://wynsbin.github.io/2019/10/24/git-command/</id>
     <published>2019-10-24T03:55:16.000Z</published>
-    <updated>2019-10-24T07:15:48.180Z</updated>
+    <updated>2019-10-24T09:03:42.023Z</updated>
     
-    <content type="html"><![CDATA[<p>Git工作流程+常用命令流程图</p><a id="more"></a><h2 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h2><p><img src="/images/article/git_work.webp" alt="在这里插入图片描述"></p><p>以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。</p><ul><li>Workspace：工作区</li><li>Index / Stage：暂存区</li><li>Repository：仓库区（或本地仓库）</li><li>Remote：远程仓库</li></ul><h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><p><img src="/images/article/git_command.webp" alt="在这里插入图片描述"></p><p><strong>参考</strong></p><p><a href="https://www.jianshu.com/p/9685a56bdf7a" target="_blank" rel="noopener">Git最全命令</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Git工作流程+常用命令流程图</p><a id="more"></a><h2 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h2><p><img src="/images/article/git_work.webp" alt="在这里插入图片描述"></p><p>以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。</p><ul><li>Workspace：工作区</li><li>Index / Stage：暂存区</li><li>Repository：仓库区（或本地仓库）</li><li>Remote：远程仓库</li></ul><h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><p>查看远程仓库地址：<code>git remote -v</code></p><p>修改远程地址：<code>git remote set-url origin http://xxxx/xxx.git</code>(后面是新地址)</p><p><img src="/images/article/git_command.webp" alt="在这里插入图片描述"></p><p><strong>参考</strong></p><p><a href="https://www.jianshu.com/p/9685a56bdf7a" target="_blank" rel="noopener">Git最全命令</a></p>]]></content>
     
     <summary type="html">
     
@@ -31,17 +31,17 @@
     
     </summary>
     
-      <category term="Git" scheme="https://wshaobin.github.io/categories/Git/"/>
+      <category term="Git" scheme="https://wynsbin.github.io/categories/Git/"/>
     
     
-      <category term="Git" scheme="https://wshaobin.github.io/tags/Git/"/>
+      <category term="Git" scheme="https://wynsbin.github.io/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>Chrome打开应用商店及推荐实用插件</title>
-    <link href="https://wshaobin.github.io/2019/01/08/chrome-plugin/"/>
-    <id>https://wshaobin.github.io/2019/01/08/chrome-plugin/</id>
+    <link href="https://wynsbin.github.io/2019/01/08/chrome-plugin/"/>
+    <id>https://wynsbin.github.io/2019/01/08/chrome-plugin/</id>
     <published>2019-01-08T08:12:16.000Z</published>
     <updated>2019-10-24T06:39:43.491Z</updated>
     
@@ -53,17 +53,17 @@
     
     </summary>
     
-      <category term="Chrome" scheme="https://wshaobin.github.io/categories/Chrome/"/>
+      <category term="Chrome" scheme="https://wynsbin.github.io/categories/Chrome/"/>
     
     
-      <category term="Chrome" scheme="https://wshaobin.github.io/tags/Chrome/"/>
+      <category term="Chrome" scheme="https://wynsbin.github.io/tags/Chrome/"/>
     
   </entry>
   
   <entry>
     <title>Git上传本地项目到Github</title>
-    <link href="https://wshaobin.github.io/2018/12/22/git-upload-project/"/>
-    <id>https://wshaobin.github.io/2018/12/22/git-upload-project/</id>
+    <link href="https://wynsbin.github.io/2018/12/22/git-upload-project/"/>
+    <id>https://wynsbin.github.io/2018/12/22/git-upload-project/</id>
     <published>2018-12-22T06:45:06.000Z</published>
     <updated>2019-10-24T07:18:13.860Z</updated>
     
@@ -75,17 +75,17 @@
     
     </summary>
     
-      <category term="Git" scheme="https://wshaobin.github.io/categories/Git/"/>
+      <category term="Git" scheme="https://wynsbin.github.io/categories/Git/"/>
     
     
-      <category term="Git" scheme="https://wshaobin.github.io/tags/Git/"/>
+      <category term="Git" scheme="https://wynsbin.github.io/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>Android反编译Apk，修改资源，重新打包，签名发布</title>
-    <link href="https://wshaobin.github.io/2018/12/22/decompile-apk-1/"/>
-    <id>https://wshaobin.github.io/2018/12/22/decompile-apk-1/</id>
+    <link href="https://wynsbin.github.io/2018/12/22/decompile-apk-1/"/>
+    <id>https://wynsbin.github.io/2018/12/22/decompile-apk-1/</id>
     <published>2018-12-22T03:24:49.000Z</published>
     <updated>2019-10-22T01:19:05.501Z</updated>
     
@@ -97,19 +97,19 @@
     
     </summary>
     
-      <category term="Android" scheme="https://wshaobin.github.io/categories/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/categories/Android/"/>
     
     
-      <category term="Android" scheme="https://wshaobin.github.io/tags/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/tags/Android/"/>
     
-      <category term="反编译" scheme="https://wshaobin.github.io/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+      <category term="反编译" scheme="https://wynsbin.github.io/tags/%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
     
   </entry>
   
   <entry>
     <title>Hexo主题Next的个性化教程，打造炫酷网站</title>
-    <link href="https://wshaobin.github.io/2018/12/20/hexo-2/"/>
-    <id>https://wshaobin.github.io/2018/12/20/hexo-2/</id>
+    <link href="https://wynsbin.github.io/2018/12/20/hexo-2/"/>
+    <id>https://wynsbin.github.io/2018/12/20/hexo-2/</id>
     <published>2018-12-20T07:30:02.000Z</published>
     <updated>2019-10-23T07:12:10.155Z</updated>
     
@@ -121,17 +121,17 @@
     
     </summary>
     
-      <category term="Hexo" scheme="https://wshaobin.github.io/categories/Hexo/"/>
+      <category term="Hexo" scheme="https://wynsbin.github.io/categories/Hexo/"/>
     
     
-      <category term="Hexo" scheme="https://wshaobin.github.io/tags/Hexo/"/>
+      <category term="Hexo" scheme="https://wynsbin.github.io/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hexo+Github搭建博客心得篇</title>
-    <link href="https://wshaobin.github.io/2018/12/20/hexo-1/"/>
-    <id>https://wshaobin.github.io/2018/12/20/hexo-1/</id>
+    <link href="https://wynsbin.github.io/2018/12/20/hexo-1/"/>
+    <id>https://wynsbin.github.io/2018/12/20/hexo-1/</id>
     <published>2018-12-20T07:29:58.000Z</published>
     <updated>2019-10-23T06:54:48.187Z</updated>
     
@@ -143,17 +143,17 @@
     
     </summary>
     
-      <category term="Hexo" scheme="https://wshaobin.github.io/categories/Hexo/"/>
+      <category term="Hexo" scheme="https://wynsbin.github.io/categories/Hexo/"/>
     
     
-      <category term="Hexo" scheme="https://wshaobin.github.io/tags/Hexo/"/>
+      <category term="Hexo" scheme="https://wynsbin.github.io/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>Android 蓝牙设备通讯的开发(配对/连接/传输数据)</title>
-    <link href="https://wshaobin.github.io/2018/12/19/ble-2/"/>
-    <id>https://wshaobin.github.io/2018/12/19/ble-2/</id>
+    <link href="https://wynsbin.github.io/2018/12/19/ble-2/"/>
+    <id>https://wynsbin.github.io/2018/12/19/ble-2/</id>
     <published>2018-12-19T09:40:14.000Z</published>
     <updated>2019-10-24T06:13:05.992Z</updated>
     
@@ -165,19 +165,19 @@
     
     </summary>
     
-      <category term="Android" scheme="https://wshaobin.github.io/categories/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/categories/Android/"/>
     
     
-      <category term="Android" scheme="https://wshaobin.github.io/tags/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/tags/Android/"/>
     
-      <category term="Ble" scheme="https://wshaobin.github.io/tags/Ble/"/>
+      <category term="Ble" scheme="https://wynsbin.github.io/tags/Ble/"/>
     
   </entry>
   
   <entry>
     <title>Android BLE最完整的工具类(扫描/连接/读写/通知设备)</title>
-    <link href="https://wshaobin.github.io/2018/12/19/ble-1/"/>
-    <id>https://wshaobin.github.io/2018/12/19/ble-1/</id>
+    <link href="https://wynsbin.github.io/2018/12/19/ble-1/"/>
+    <id>https://wynsbin.github.io/2018/12/19/ble-1/</id>
     <published>2018-12-19T09:30:19.000Z</published>
     <updated>2019-10-24T06:13:03.251Z</updated>
     
@@ -189,19 +189,19 @@
     
     </summary>
     
-      <category term="Android" scheme="https://wshaobin.github.io/categories/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/categories/Android/"/>
     
     
-      <category term="Android" scheme="https://wshaobin.github.io/tags/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/tags/Android/"/>
     
-      <category term="Ble" scheme="https://wshaobin.github.io/tags/Ble/"/>
+      <category term="Ble" scheme="https://wynsbin.github.io/tags/Ble/"/>
     
   </entry>
   
   <entry>
     <title>Android 腾讯Bugly的应用升级&amp;热更新</title>
-    <link href="https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/"/>
-    <id>https://wshaobin.github.io/2018/12/19/bugly-upgrade-update/</id>
+    <link href="https://wynsbin.github.io/2018/12/19/bugly-upgrade-update/"/>
+    <id>https://wynsbin.github.io/2018/12/19/bugly-upgrade-update/</id>
     <published>2018-12-19T08:49:09.000Z</published>
     <updated>2019-10-24T06:13:11.155Z</updated>
     
@@ -213,12 +213,12 @@
     
     </summary>
     
-      <category term="Android" scheme="https://wshaobin.github.io/categories/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/categories/Android/"/>
     
     
-      <category term="Android" scheme="https://wshaobin.github.io/tags/Android/"/>
+      <category term="Android" scheme="https://wynsbin.github.io/tags/Android/"/>
     
-      <category term="Bugly" scheme="https://wshaobin.github.io/tags/Bugly/"/>
+      <category term="Bugly" scheme="https://wynsbin.github.io/tags/Bugly/"/>
     
   </entry>
   
