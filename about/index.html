@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Wynsbin">
 <meta property="og:description" content="个人简介 骚剑客/男/90后 专科/广东工贸/计算机软件 个人博客：https://wynsbin.github.io 备用博客：https://mppmz2.coding-pages.com Github：https://github.com/Wynsbin CSDN：https://blog.csdn.net/qq_30552993 简书：https://www.jianshu.com/u/c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-25T05:59:25.559Z">
+<meta property="og:updated_time" content="2019-10-25T10:01:29.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="欢迎查看简介信息～">
 <meta name="twitter:description" content="个人简介 骚剑客/男/90后 专科/广东工贸/计算机软件 个人博客：https://wynsbin.github.io 备用博客：https://mppmz2.coding-pages.com Github：https://github.com/Wynsbin CSDN：https://blog.csdn.net/qq_30552993 简书：https://www.jianshu.com/u/c">
@@ -342,6 +342,72 @@
 <h2 id="座右铭"><a href="#座右铭" class="headerlink" title="座右铭"></a>座右铭</h2><p>穷则独善其身，达则兼济天下</p>
 <h2 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a>网易云音乐</h2><p><meting-js server="netease" type="playlist" id="613942784"></meting-js></p>
 <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>感谢您的大驾光临，本站蓬荜生辉，666666 ♪(＾∀＾●)ﾉ</p>
+<h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><style>
+    .centerItem {
+        width: 856px;
+        height: 640px;
+        margin: 10px auto 0 auto;
+    }
+</style>
+
+<p><div id="mapBox" class="centerItem"></div><br><!-- 引入相关文件 --><br><!-- <script src="js/jquery-3.2.1.min.js"></script> --></p>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 引入 ECharts 文件 -->
+<script src="js/echarts.js"></script>
+<script src="js/china.js"></script>
+
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var mapBoxEchart = echarts.init(document.getElementById('mapBox'));
+
+    // 指定相关的配置项和数据
+    var mapBoxOption = {
+        series: [{
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true, //显示省份标签
+                    textStyle: {
+                        color: "blue"
+                    } //省份标签字体颜色
+                },
+                emphasis: { //对应的鼠标悬浮效果
+                    show: false,
+                    textStyle: {
+                        color: "#800080"
+                    }
+                }
+            },
+            aspectScale: 0.75,//这个参数用于 scale 地图的长宽比。最终的 aspect 的计算方式是：geoBoundingRect.width / geoBoundingRect.height * aspectScale
+            zoom: 1.2,//当前视角的缩放比例。
+            itemStyle: {
+                normal: {
+                    borderWidth: .5, //区域边框宽度
+                    borderColor: '#009fe8', //区域边框颜色
+                    areaColor: "#ffefd5", //区域颜色
+                },
+                emphasis: {//鼠标滑过地图高亮的相关设置
+                    borderWidth: .5,
+                    borderColor: '#4b0082',
+                    areaColor: "#ffdead",
+                }
+            },
+            data:[
+                {name:'广东', selected:true}//福建为选中状态
+            ]
+        }]
+    };
+    // 使用制定的配置项和数据显示图表
+    mapBoxEchart.setOption(mapBoxOption);
+    // echart图表自适应
+    window.addEventListener("resize", function() {
+        mapBoxEchart.resize();
+    });
+</script>
+
+
+
 
         
       </div>
@@ -514,13 +580,70 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人简介"><span class="nav-number">1.</span> <span class="nav-text">个人简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人宣言"><span class="nav-number">2.</span> <span class="nav-text">个人宣言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个性签名"><span class="nav-number">3.</span> <span class="nav-text">个性签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#座右铭"><span class="nav-number">4.</span> <span class="nav-text">座右铭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网易云音乐"><span class="nav-number">5.</span> <span class="nav-text">网易云音乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">6.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人简介"><span class="nav-number">1.</span> <span class="nav-text">个人简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人宣言"><span class="nav-number">2.</span> <span class="nav-text">个人宣言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个性签名"><span class="nav-number">3.</span> <span class="nav-text">个性签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#座右铭"><span class="nav-number">4.</span> <span class="nav-text">座右铭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网易云音乐"><span class="nav-number">5.</span> <span class="nav-text">网易云音乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">6.</span> <span class="nav-text">致谢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置"><span class="nav-number">7.</span> <span class="nav-text">位置</span></a></li></ol></div>
             
 
           </div>
         </section>
       <!--/noindex-->
       
+
+      
+<div id="mapBox" class="centerItem"></div>
+<!-- 引入相关文件 -->
+<!-- <script src="js/jquery-3.2.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 引入 ECharts 文件 -->
+<script src="/js/echarts.js"></script>
+<script src="/js/china.js"></script>
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var mapBoxEchart = echarts.init(document.getElementById('mapBox'));
+    // 指定相关的配置项和数据
+    var mapBoxOption = {
+        series: [{
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true, //显示省份标签
+                    textStyle: {
+                        color: "blue"
+                    } //省份标签字体颜色
+                },
+                emphasis: { //对应的鼠标悬浮效果
+                    show: false,
+                    textStyle: {
+                        color: "#800080"
+                    }
+                }
+            },
+            aspectScale: 0.75,//这个参数用于 scale 地图的长宽比。最终的 aspect 的计算方式是：geoBoundingRect.width / geoBoundingRect.height * aspectScale
+            zoom: 1.2,//当前视角的缩放比例。
+            itemStyle: {
+                normal: {
+                    borderWidth: .5, //区域边框宽度
+                    borderColor: '#009fe8', //区域边框颜色
+                    areaColor: "#ffefd5", //区域颜色
+                },
+                emphasis: {//鼠标滑过地图高亮的相关设置
+                    borderWidth: .5,
+                    borderColor: '#4b0082',
+                    areaColor: "#ffdead",
+                }
+            },
+            data:[
+                {name:'广东', selected:true}//福建为选中状态
+            ]
+        }]
+    };
+    // 使用制定的配置项和数据显示图表
+    mapBoxEchart.setOption(mapBoxOption);
+    // echart图表自适应
+    window.addEventListener("resize", function() {
+        mapBoxEchart.resize();
+    });
+</script>
 
       
         <div class="back-to-top">
