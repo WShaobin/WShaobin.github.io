@@ -104,22 +104,22 @@
 <meta name="description" content="本文简单介绍apk是如何修改logo（ic_launcher），类似的资源文件修改也可以通过此方式。不过要修改class的话就要涉及到smali的学习了，这里就暂且不谈，后续有需要再做更新。">
 <meta name="keywords" content="Android,反编译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android反编译Apk，修改资源，重新打包，签名发布">
+<meta property="og:title" content="Android 反编译Apk，修改资源，重新打包，签名发布">
 <meta property="og:url" content="https://wynsbin.github.io/2018/12/22/decompile-apk-1/index.html">
 <meta property="og:site_name" content="Wynsbin">
 <meta property="og:description" content="本文简单介绍apk是如何修改logo（ic_launcher），类似的资源文件修改也可以通过此方式。不过要修改class的话就要涉及到smali的学习了，这里就暂且不谈，后续有需要再做更新。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_1.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_2.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_3.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_4.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_5.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_6.png">
-<meta property="og:updated_time" content="2019-10-22T01:19:05.501Z">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_1.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_2.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_3.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_4.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_5.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_6.png">
+<meta property="og:updated_time" content="2019-10-25T07:20:59.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android反编译Apk，修改资源，重新打包，签名发布">
+<meta name="twitter:title" content="Android 反编译Apk，修改资源，重新打包，签名发布">
 <meta name="twitter:description" content="本文简单介绍apk是如何修改logo（ic_launcher），类似的资源文件修改也可以通过此方式。不过要修改class的话就要涉及到smali的学习了，这里就暂且不谈，后续有需要再做更新。">
-<meta name="twitter:image" content="https://wynsbin.github.io/images/article/decompile_apk_1_1.png">
+<meta name="twitter:image" content="https://wynsbin.github.io/images/article/android/decompile_apk_1_1.png">
 
 
 
@@ -155,7 +155,7 @@
 
 
 
-  <title>Android反编译Apk，修改资源，重新打包，签名发布 | Wynsbin</title>
+  <title>Android 反编译Apk，修改资源，重新打包，签名发布 | Wynsbin</title>
   
 
 
@@ -348,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android反编译Apk，修改资源，重新打包，签名发布</h1>
+          <h1 class="post-title" itemprop="name headline">Android 反编译Apk，修改资源，重新打包，签名发布</h1>
         
 
         <div class="post-meta">
@@ -438,7 +438,7 @@
 
               
               
-                 <span id="/2018/12/22/decompile-apk-1/" class="leancloud_visitors" data-flag-title="Android反编译Apk，修改资源，重新打包，签名发布">
+                 <span id="/2018/12/22/decompile-apk-1/" class="leancloud_visitors" data-flag-title="Android 反编译Apk，修改资源，重新打包，签名发布">
                    
                    <span class="post-meta-divider"></span>
                    <span class="post-meta-item-icon">
@@ -472,22 +472,22 @@
       
 
         <p>本文简单介绍apk是如何修改logo（ic_launcher），类似的资源文件修改也可以通过此方式。不过要修改class的话就要涉及到smali的学习了，这里就暂且不谈，后续有需要再做更新。<br><a id="more"></a></p>
-<h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><p><img src="/images/article/decompile_apk_1_1.png" alt="在这里插入图片描述"></p>
+<h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><p><img src="/images/article/android/decompile_apk_1_1.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>apktool：用来反编译apk，apk重新打包</li>
 <li>autosign：自动签名工具，将重新打包的apk进行签名，如果不签名，无法安装使用</li>
 <li>jadx-0.6.1-dev-build226：查看源码及目录结构，相当于dex2jar + jd-gui<br>这些工具在网上都可以下载的到，如果需要的话留下邮箱即可</li>
 </ul>
-<h2 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h2><h3 id="jadx-0-6-1-dev-build226"><a href="#jadx-0-6-1-dev-build226" class="headerlink" title="jadx-0.6.1-dev-build226"></a>jadx-0.6.1-dev-build226</h3><p>双击jadx-0.6.1-dev-build226\bin目录下jadx-gui.bat,选择test.apk即可看到源码及目录结构，如下<br><img src="/images/article/decompile_apk_1_2.png" alt="在这里插入图片描述"><br>这只是用于查看源码，并起不到修改作用，不过可以查看要修改的东西在哪个位置，真正修改要通过apktool反编译apk的源码才可以修改。</p>
-<h3 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h3><p> 该目录下有三个文件：aapt.exe，apktool.bat，apktool.jar ，将需要反编译的APK文件放到该目录下，如图：<br><img src="/images/article/decompile_apk_1_3.png" alt="在这里插入图片描述"><br>在该目录下，按住Shift，然后右键选择“在此处打开命令窗口”，输入一下命令：</p>
+<h2 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h2><h3 id="jadx-0-6-1-dev-build226"><a href="#jadx-0-6-1-dev-build226" class="headerlink" title="jadx-0.6.1-dev-build226"></a>jadx-0.6.1-dev-build226</h3><p>双击jadx-0.6.1-dev-build226\bin目录下jadx-gui.bat,选择test.apk即可看到源码及目录结构，如下<img src="/images/article/android/decompile_apk_1_2.png" alt="在这里插入图片描述">这只是用于查看源码，并起不到修改作用，不过可以查看要修改的东西在哪个位置，真正修改要通过apktool反编译apk的源码才可以修改。</p>
+<h3 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h3><p> 该目录下有三个文件：aapt.exe，apktool.bat，apktool.jar ，将需要反编译的APK文件放到该目录下，如图：<br><img src="/images/article/android/decompile_apk_1_3.png" alt="在这里插入图片描述">在该目录下，按住Shift，然后右键选择“在此处打开命令窗口”，输入一下命令：</p>
 <p><code>apktool.bat d -f test.apk -o test</code></p>
-<p>apktool -f [待反编译的apk] -o [反编译之后存放文件夹]<br><img src="/images/article/decompile_apk_1_4.png" alt="在这里插入图片描述"><br>如果反编译过程中遇到Exception in thread “main” 错误，可能是apktool.jar的版本太低，使用高版本不会出现异常。</p>
+<p>apktool -f [待反编译的apk] -o [反编译之后存放文件夹]<br><img src="/images/article/android/decompile_apk_1_4.png" alt="在这里插入图片描述">如果反编译过程中遇到Exception in thread “main” 错误，可能是apktool.jar的版本太低，使用高版本不会出现异常。</p>
 <p>请往<a href="https://ibotpeaches.github.io/Apktool/" target="_blank" rel="noopener">https://ibotpeaches.github.io/Apktool/</a></p>
 <p>重新下载，下载到的apktool_xxx.jar文件改名为apktool.jar，然后替换掉老版本的apktool.jar，重新执行命令应该就正常了。</p>
-<p>反编译之后会得到test 文件夹，打开test文件夹，里边就是反编译出来的各种资源文件<br><img src="/images/article/decompile_apk_1_5.png" alt="在这里插入图片描述"><br>然后进行test\res目录去修改ic_launcher，这里所有的ic_launcher都要做替换。</p>
+<p>反编译之后会得到test 文件夹，打开test文件夹，里边就是反编译出来的各种资源文件<br><img src="/images/article/android/decompile_apk_1_5.png" alt="在这里插入图片描述">然后进行test\res目录去修改ic_launcher，这里所有的ic_launcher都要做替换。</p>
 <p>修改成功，保存，重新打包，执行打包命令</p>
 <p><code>apktool.bat b test</code></p>
-<p>在test文件内会多出两个文件如下图所示：<br><img src="/images/article/decompile_apk_1_6.png" alt="在这里插入图片描述"><br>dist文件内就是我们需要的apk。</p>
+<p>在test文件内会多出两个文件如下图所示：<br><img src="/images/article/android/decompile_apk_1_6.png" alt="在这里插入图片描述">dist文件内就是我们需要的apk。</p>
 <h3 id="autosign"><a href="#autosign" class="headerlink" title="autosign"></a>autosign</h3><p>签名apk，重新发布</p>
 <p>接下来就要用到签名工具了，如果不经过签名是不能正确运行的。工具： auto-sign.zip</p>
 <p>将打包好的test.apk 拷贝到解压好的auto-sign文件夹下，执行命令：</p>
@@ -544,7 +544,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://wynsbin.github.io/2018/12/22/decompile-apk-1/" title="Android反编译Apk，修改资源，重新打包，签名发布">https://wynsbin.github.io/2018/12/22/decompile-apk-1/</a>
+    <a href="https://wynsbin.github.io/2018/12/22/decompile-apk-1/" title="Android 反编译Apk，修改资源，重新打包，签名发布">https://wynsbin.github.io/2018/12/22/decompile-apk-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -584,7 +584,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/22/git-upload-project/" rel="prev" title="Git上传本地项目到Github">
+              <a href="/2018/12/22/git-upload/" rel="prev" title="Git上传本地项目到Github">
                 Git上传本地项目到Github <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -699,7 +699,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -721,7 +721,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -88,7 +88,7 @@
 
 
 
-  <meta name="keywords" content="Git,">
+  <meta name="keywords" content="Android,验证码输入框,">
 
 
 
@@ -101,22 +101,22 @@
 
 
 
-<meta name="description" content="全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github">
-<meta name="keywords" content="Git">
+<meta name="description" content="最近做新项目的时候，遇到需要验证码输入框，为了防止重复造轮子，特地查阅github及网上资源，都发现没有一款合适当前需求。">
+<meta name="keywords" content="Android,验证码输入框">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git上传本地项目到Github">
-<meta property="og:url" content="https://wynsbin.github.io/2018/12/22/git-upload-project/index.html">
+<meta property="og:title" content="Android 自定义验证码输入框(支持粘贴连续性)">
+<meta property="og:url" content="https://wynsbin.github.io/2019/10/25/VerificationCodeInputView/index.html">
 <meta property="og:site_name" content="Wynsbin">
-<meta property="og:description" content="全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github">
+<meta property="og:description" content="最近做新项目的时候，遇到需要验证码输入框，为了防止重复造轮子，特地查阅github及网上资源，都发现没有一款合适当前需求。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/git_1.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/git_2.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/git_3.png">
-<meta property="og:updated_time" content="2019-10-24T07:18:13.860Z">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/vciv_logo.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/vciv_other.gif">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/android/vciv_oneself.gif">
+<meta property="og:updated_time" content="2019-10-25T07:27:17.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git上传本地项目到Github">
-<meta name="twitter:description" content="全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github">
-<meta name="twitter:image" content="https://wynsbin.github.io/images/article/git_1.png">
+<meta name="twitter:title" content="Android 自定义验证码输入框(支持粘贴连续性)">
+<meta name="twitter:description" content="最近做新项目的时候，遇到需要验证码输入框，为了防止重复造轮子，特地查阅github及网上资源，都发现没有一款合适当前需求。">
+<meta name="twitter:image" content="https://wynsbin.github.io/images/article/android/vciv_logo.png">
 
 
 
@@ -146,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="https://wynsbin.github.io/2018/12/22/git-upload-project/">
+  <link rel="canonical" href="https://wynsbin.github.io/2019/10/25/VerificationCodeInputView/">
 
 
 
 
 
-  <title>Git上传本地项目到Github | Wynsbin</title>
+  <title>Android 自定义验证码输入框(支持粘贴连续性) | Wynsbin</title>
   
 
 
@@ -328,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wynsbin.github.io/2018/12/22/git-upload-project/">
+    <link itemprop="mainEntityOfPage" href="https://wynsbin.github.io/2019/10/25/VerificationCodeInputView/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wynsbin">
@@ -345,10 +345,15 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git上传本地项目到Github</h1>
+          <h1 class="post-title" itemprop="name headline">Android 自定义验证码输入框(支持粘贴连续性)</h1>
         
 
         <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            
+            <span class="post-meta-divider"></span>
           
           <span class="post-time">
             
@@ -358,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T14:45:06+08:00">
-                2018-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-25T12:00:39+08:00">
+                2019-10-25
               </time>
             
 
@@ -382,8 +387,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -412,7 +417,7 @@
                   <span class="post-meta-item-text">字数&#58;</span>
                 
                 <span title="字数">
-                  898
+                  681
                 </span>
               
 
@@ -429,13 +434,13 @@
                   <span class="post-meta-item-text">时长 &asymp;</span>
                 
                 <span title="时长">
-                  3min
+                  2min
                 </span>
               
 
               
               
-                 <span id="/2018/12/22/git-upload-project/" class="leancloud_visitors" data-flag-title="Git上传本地项目到Github">
+                 <span id="/2019/10/25/VerificationCodeInputView/" class="leancloud_visitors" data-flag-title="Android 自定义验证码输入框(支持粘贴连续性)">
                    
                    <span class="post-meta-divider"></span>
                    <span class="post-meta-item-icon">
@@ -468,40 +473,164 @@
 
       
 
-        <p>全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github</p>
+        <p>最近做新项目的时候，遇到需要验证码输入框，为了防止重复造轮子，特地查阅github及网上资源，都发现没有一款合适当前需求。</p>
+<div align="center"><img src="/images/article/android/vciv_logo.png" alt="在这里插入图片描述"></div> 
+
 <a id="more"></a>
-<h2 id="创建本地版本库"><a href="#创建本地版本库" class="headerlink" title="创建本地版本库"></a>创建本地版本库</h2><p>其实这里就是你要上传的那个项目文件（例如：Project）</p>
-<h2 id="Git初始化"><a href="#Git初始化" class="headerlink" title="Git初始化"></a>Git初始化</h2><p>对着Project右键,选择Git bash here,通过命令<code>git init</code>把这个文件夹变成Git可管理的仓库</p>
-<p><img src="/images/article/git_1.png" alt="在这里插入图片描述"></p>
-<p>这时你会发现Project里面多了个.git文件夹，它是Git用来跟踪和管理版本库的。如果你看不到，是因为它默认是隐藏文件，那你就需要设置一下让隐藏文件可见。</p>
-<h2 id="项目添加到本地仓库"><a href="#项目添加到本地仓库" class="headerlink" title="项目添加到本地仓库"></a>项目添加到本地仓库</h2><p>你的项目粘贴到这个本地Git仓库里面（粘贴后你可以通过<code>git status</code>来查看你当前的状态），然后通过git add把项目添加到仓库（或<code>git add .</code>把该目录下的所有文件添加到仓库，注意点是用空格隔开的）。在这个过程中你其实可以一直使用git status来查看你当前的状态。</p>
-<h2 id="提交到仓库"><a href="#提交到仓库" class="headerlink" title="提交到仓库"></a>提交到仓库</h2><p>用git commit把项目提交到仓库，<code>-m</code>后面引号里面是本次提交的注释内容,命令如下</p>
-<p><code>git commit -m &quot;注解内容&quot;</code></p>
-<p><strong>下面就是上传了，如果没有配置SSH的话，可以先配置一下，这里不做详细的介绍了</strong></p>
-<p><img src="/images/article/git_2.png" alt="在这里插入图片描述"></p>
-<h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在Github上创建一个Git仓库，你可以直接点New repository来创建，比如我创建了一个Project的仓库</p>
-<h2 id="关联本地仓库"><a href="#关联本地仓库" class="headerlink" title="关联本地仓库"></a>关联本地仓库</h2><p>在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地Project仓库的命令行输入：</p>
-<p><code>git remote add origin https://github.com/WShaobin/Project.git</code></p>
-<p>这里可以是HTTPS或者SSH,二则选其一就行</p>
-<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><p>关联好之后我们就可以把本地库的所有内容推送到远程仓库（也就是Github）上了，通过：</p>
-<p><code>git push -u origin master</code></p>
-<p> 由于新建的远程仓库是空的，所以要加上<code>-u</code>这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了：</p>
-<p> <code>git push origin master</code></p>
-<p>至此就完成了将本地项目上传到Github的整个过程。</p>
-<p>另外，如果你在git push 的时候出现如下报错。<br><img src="/images/article/git_3.png" alt="在这里插入图片描述"></p>
-<p>原因是你勾选了Initialize this repository with a README，就是创建仓库的时候自动给你创建一个README文件，而本地仓库没有README文件，这时我们可以通过以下命令先将内容合并以下：</p>
-<p><code>git pull --rebase origin master</code></p>
-<p>然后重新push就成功了</p>
-<h2 id="Git忽略"><a href="#Git忽略" class="headerlink" title="Git忽略"></a>Git忽略</h2><h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>在添加.gitignore文件后，当想push文件的时候，声明的忽略文件还是会出现在push的目录中</p>
-<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>某些文件已经被纳入版本管理中，就算是在.gitignore中已经声明也不会起作用</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我们应该先把本地的缓存删除，然后再进行push，操作步骤如下</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached . <span class="comment">// 删除本地缓存</span></span><br><span class="line">git <span class="keyword">add</span> . <span class="comment">// 添加要提交的文件</span></span><br><span class="line">git commit -m <span class="string">'update .gitignore'</span> <span class="comment">// 更新本地的缓存</span></span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="初次上传"><a href="#初次上传" class="headerlink" title="初次上传"></a>初次上传</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"注解内容"</span></span></span><br><span class="line"><span class="bash">git remote add origin https://github.com/xxx/xxx.git</span></span><br><span class="line"><span class="bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
-<p>如果git push时，报了git pull…的错，可以使用如下命令：</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">--rebase origin master</span></span><br></pre></td></tr></table></figure>
-<h3 id="二次上传"><a href="#二次上传" class="headerlink" title="二次上传"></a>二次上传</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">add </span>.</span><br><span class="line"><span class="symbol">git</span> commit -m <span class="string">"注解内容"</span></span><br><span class="line"><span class="symbol">git</span> <span class="keyword">push </span>origin master</span><br></pre></td></tr></table></figure>
-<p><strong>参考</strong></p>
-<p><a href="https://blog.csdn.net/zamamiro/article/details/70172900" target="_blank" rel="noopener">Git上传项目</a></p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>1、能自定义输入框个数和样式<br>2、支持长按粘贴或剪切板内容自动填充（粘贴连续性）</p>
+<p><strong>其中第2点是最为重要的，正是其他人没有这点，逼得自己弄一个</strong></p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>别人的示例：<br><img src="/images/article/android/vciv_other.gif" alt="在这里插入图片描述"><br>粘贴居然不支持连续性，只能粘贴第一个字符，所以用的有点难受</p>
+<p>自己的示例：<br><img src="/images/article/android/vciv_oneself.gif" alt="在这里插入图片描述"></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>大致是Edittext + n* TextView，然后设置edittext字体跟背景颜色都为透明，隐藏光标</p>
+<p>Edittext：监听edittext每次输入一个字符就赋值到对应的TextView上，然后在清空自己</p>
+<p>下划线：在TextView下面添加View</p>
+<p>光标：这里的每个TextView的焦点光标其实对View设置了ValueAnimator</p>
+<p>粘贴：粘贴弹窗是自定义的PopupWindow</p>
+<p>源码有详细注释，这里就不一一说明</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p><a href="https://github.com/Wynsbin/VerificationCodeInputView" target="_blank" rel="noopener">https://github.com/Wynsbin/VerificationCodeInputView</a></p>
+<h2 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><p>Step 1. Add it in your root build.gradle at the end of repositories:</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">	repositories &#123;</span><br><span class="line">		...</span><br><span class="line">		maven &#123; url <span class="string">'https://jitpack.io'</span> &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Step 2. Add the dependency:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">dependencies</span> &#123;</span><br><span class="line">     <span class="attribute">implementation</span> <span class="string">'com.github.Wynsbin:VerificationCodeInputView:1.0.2'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><h3 id="In-layout"><a href="#In-layout" class="headerlink" title="In layout"></a>In layout</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.wynsbin.vciv.VerificationCodeInputView</span><br><span class="line">    android:<span class="attribute">id</span>=<span class="string">"@+id/vciv_code"</span></span><br><span class="line">    android:<span class="attribute">layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    android:<span class="attribute">layout_height</span>=<span class="string">"wrap_content"</span></span><br><span class="line">    android:<span class="attribute">layout_marginTop</span>=<span class="string">"48dp"</span></span><br><span class="line">    android:<span class="attribute">gravity</span>=<span class="string">"center"</span></span><br><span class="line">    android:<span class="attribute">orientation</span>=<span class="string">"horizontal"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_background</span>=<span class="string">"@android:color/white"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_foucs_background</span>=<span class="string">"@android:color/holo_orange_dark"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_cursor_color</span>=<span class="string">"@color/colorPrimary"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_height</span>=<span class="string">"58dp"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_inputType</span>=<span class="string">"number"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_number</span>=<span class="string">"6"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_text_color</span>=<span class="string">"@android:color/black"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_text_size</span>=<span class="string">"18sp"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_underline_default_color</span>=<span class="string">"@android:color/holo_green_dark"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_underline_focus_color</span>=<span class="string">"@android:color/holo_blue_bright"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_underline_height</span>=<span class="string">"2dp"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_underline_show</span>=<span class="string">"true"</span></span><br><span class="line">    app:<span class="attribute">vciv_et_width</span>=<span class="string">"58dp"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="In-Java-Code"><a href="#In-Java-Code" class="headerlink" title="In Java Code"></a>In Java Code</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">VerificationCodeInputView view = findViewById(R.id.vciv_code);</span><br><span class="line">view.setOnInputListener(<span class="keyword">new</span> VerificationCodeInputView.OnInputListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">(String code)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(MainActivity.<span class="keyword">this</span>, code, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onInput</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//清除验证码</span></span><br><span class="line">view.clearCode();</span><br></pre></td></tr></table></figure>
+<h2 id="Attributes"><a href="#Attributes" class="headerlink" title="Attributes"></a>Attributes</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">name</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">format</th>
+<th style="text-align:center">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vciv_et_number</td>
+<td style="text-align:left">输入框的数量</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_inputType</td>
+<td style="text-align:left">输入框输入类型</td>
+<td style="text-align:left">enum</td>
+<td style="text-align:center">数字模式</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_width</td>
+<td style="text-align:left">输入框的宽度</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center">40dp</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_height</td>
+<td style="text-align:left">输入框的高度</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center">40dp</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_text_color</td>
+<td style="text-align:left">输入框文字颜色</td>
+<td style="text-align:left">color</td>
+<td style="text-align:center">Color.BLACK</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_text_size</td>
+<td style="text-align:left">输入框文字大小</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center">14sp</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_spacing</td>
+<td style="text-align:left">输入框间距，不输入则代表平分</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_background</td>
+<td style="text-align:left">输入框背景色</td>
+<td style="text-align:left">reference&amp;color</td>
+<td style="text-align:center">Color.WHITE</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_foucs_background</td>
+<td style="text-align:left">输入框焦点背景色，不输入代表不设置</td>
+<td style="text-align:left">reference&amp;color</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_cursor_width</td>
+<td style="text-align:left">输入框焦点宽度</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center">2dp</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_cursor_height</td>
+<td style="text-align:left">输入框焦点高度</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center">30dp</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_cursor_color</td>
+<td style="text-align:left">输入框焦点颜色</td>
+<td style="text-align:left">color</td>
+<td style="text-align:center">#C3C3C3</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_underline_height</td>
+<td style="text-align:left">输入框下划线高度</td>
+<td style="text-align:left">dimension</td>
+<td style="text-align:center">1dp</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_underline_default_color</td>
+<td style="text-align:left">输入框无焦点的下划线颜色</td>
+<td style="text-align:left">color</td>
+<td style="text-align:center">#F0F0F0</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_underline_focus_color</td>
+<td style="text-align:left">输入框有焦点的下划线颜色</td>
+<td style="text-align:left">color</td>
+<td style="text-align:center">#C3C3C3</td>
+</tr>
+<tr>
+<td style="text-align:left">vciv_et_underline_show</td>
+<td style="text-align:left">输入框下划线是否展示</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="VCInputType"><a href="#VCInputType" class="headerlink" title="VCInputType"></a>VCInputType</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">name</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">number</td>
+<td style="text-align:left">数字模式</td>
+</tr>
+<tr>
+<td style="text-align:left">numberPassword</td>
+<td style="text-align:left">数字密码模式</td>
+</tr>
+<tr>
+<td style="text-align:left">text</td>
+<td style="text-align:left">字符模式</td>
+</tr>
+<tr>
+<td style="text-align:left">textPassword</td>
+<td style="text-align:left">字符密码模式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="输入框背景色支持类型"><a href="#输入框背景色支持类型" class="headerlink" title="输入框背景色支持类型"></a>输入框背景色支持类型</h3><p>1、@drawable/xxx</p>
+<p>2、@color/xxx</p>
+<p>3、#xxxxxx</p>
 
       
     </div>
@@ -551,7 +680,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://wynsbin.github.io/2018/12/22/git-upload-project/" title="Git上传本地项目到Github">https://wynsbin.github.io/2018/12/22/git-upload-project/</a>
+    <a href="https://wynsbin.github.io/2019/10/25/VerificationCodeInputView/" title="Android 自定义验证码输入框(支持粘贴连续性)">https://wynsbin.github.io/2019/10/25/VerificationCodeInputView/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -566,7 +695,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+            <a href="/tags/验证码输入框/" rel="tag"><i class="fa fa-tag"></i> 验证码输入框</a>
           
         </div>
       
@@ -579,8 +710,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/22/decompile-apk-1/" rel="next" title="Android反编译Apk，修改资源，重新打包，签名发布">
-                <i class="fa fa-chevron-left"></i> Android反编译Apk，修改资源，重新打包，签名发布
+              <a href="/2019/10/24/git-command/" rel="next" title="Git工作流程+常用命令">
+                <i class="fa fa-chevron-left"></i> Git工作流程+常用命令
               </a>
             
           </div>
@@ -588,10 +719,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/08/chrome-plugin/" rel="prev" title="Chrome打开应用商店及推荐实用插件">
-                Chrome打开应用商店及推荐实用插件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -704,7 +831,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,7 +853,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -811,7 +938,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建本地版本库"><span class="nav-number">1.</span> <span class="nav-text">创建本地版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git初始化"><span class="nav-number">2.</span> <span class="nav-text">Git初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目添加到本地仓库"><span class="nav-number">3.</span> <span class="nav-text">项目添加到本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交到仓库"><span class="nav-number">4.</span> <span class="nav-text">提交到仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建远程仓库"><span class="nav-number">5.</span> <span class="nav-text">创建远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联本地仓库"><span class="nav-number">6.</span> <span class="nav-text">关联本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送到远程仓库"><span class="nav-number">7.</span> <span class="nav-text">推送到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git忽略"><span class="nav-number">8.</span> <span class="nav-text">Git忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">8.1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因分析"><span class="nav-number">8.2.</span> <span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">8.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初次上传"><span class="nav-number">9.1.</span> <span class="nav-text">初次上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二次上传"><span class="nav-number">9.2.</span> <span class="nav-text">二次上传</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github"><span class="nav-number">4.</span> <span class="nav-text">Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradle"><span class="nav-number">5.</span> <span class="nav-text">Gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-use"><span class="nav-number">6.</span> <span class="nav-text">How to use</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#In-layout"><span class="nav-number">6.1.</span> <span class="nav-text">In layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-Java-Code"><span class="nav-number">6.2.</span> <span class="nav-text">In Java Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attributes"><span class="nav-number">7.</span> <span class="nav-text">Attributes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VCInputType"><span class="nav-number">7.1.</span> <span class="nav-text">VCInputType</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入框背景色支持类型"><span class="nav-number">7.2.</span> <span class="nav-text">输入框背景色支持类型</span></a></li></ol></li></ol></div>
             
 
           </div>

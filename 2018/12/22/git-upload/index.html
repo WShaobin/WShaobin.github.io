@@ -101,21 +101,22 @@
 
 
 
-<meta name="description" content="Git工作流程+常用命令流程图">
+<meta name="description" content="全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git工作流程+常用命令">
-<meta property="og:url" content="https://wynsbin.github.io/2019/10/24/git-command/index.html">
+<meta property="og:title" content="Git上传本地项目到Github">
+<meta property="og:url" content="https://wynsbin.github.io/2018/12/22/git-upload/index.html">
 <meta property="og:site_name" content="Wynsbin">
-<meta property="og:description" content="Git工作流程+常用命令流程图">
+<meta property="og:description" content="全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/git/git_work.webp">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/git/git_command.webp">
-<meta property="og:updated_time" content="2019-10-25T07:21:43.689Z">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/git/git_1.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/git/git_2.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/git/git_3.png">
+<meta property="og:updated_time" content="2019-10-25T07:22:49.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git工作流程+常用命令">
-<meta name="twitter:description" content="Git工作流程+常用命令流程图">
-<meta name="twitter:image" content="https://wynsbin.github.io/images/article/git/git_work.webp">
+<meta name="twitter:title" content="Git上传本地项目到Github">
+<meta name="twitter:description" content="全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github">
+<meta name="twitter:image" content="https://wynsbin.github.io/images/article/git/git_1.png">
 
 
 
@@ -145,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="https://wynsbin.github.io/2019/10/24/git-command/">
+  <link rel="canonical" href="https://wynsbin.github.io/2018/12/22/git-upload/">
 
 
 
 
 
-  <title>Git工作流程+常用命令 | Wynsbin</title>
+  <title>Git上传本地项目到Github | Wynsbin</title>
   
 
 
@@ -327,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wynsbin.github.io/2019/10/24/git-command/">
+    <link itemprop="mainEntityOfPage" href="https://wynsbin.github.io/2018/12/22/git-upload/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wynsbin">
@@ -344,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git工作流程+常用命令</h1>
+          <h1 class="post-title" itemprop="name headline">Git上传本地项目到Github</h1>
         
 
         <div class="post-meta">
@@ -357,8 +358,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-24T11:55:16+08:00">
-                2019-10-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T14:45:06+08:00">
+                2018-12-22
               </time>
             
 
@@ -411,7 +412,7 @@
                   <span class="post-meta-item-text">字数&#58;</span>
                 
                 <span title="字数">
-                  123
+                  898
                 </span>
               
 
@@ -428,13 +429,13 @@
                   <span class="post-meta-item-text">时长 &asymp;</span>
                 
                 <span title="时长">
-                  1min
+                  3min
                 </span>
               
 
               
               
-                 <span id="/2019/10/24/git-command/" class="leancloud_visitors" data-flag-title="Git工作流程+常用命令">
+                 <span id="/2018/12/22/git-upload/" class="leancloud_visitors" data-flag-title="Git上传本地项目到Github">
                    
                    <span class="post-meta-divider"></span>
                    <span class="post-meta-item-icon">
@@ -467,21 +468,40 @@
 
       
 
-        <p>Git工作流程+常用命令流程图</p>
+        <p>全网最详细的介绍，如何用Git的方式把项目上传本地项目到Github</p>
 <a id="more"></a>
-<h2 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h2><p><img src="/images/article/git/git_work.webp" alt="在这里插入图片描述"></p>
-<p>以上包括一些简单而常用的命令，但是先不关心这些，先来了解下面这4个专有名词。</p>
-<ul>
-<li>Workspace：工作区</li>
-<li>Index / Stage：暂存区</li>
-<li>Repository：仓库区（或本地仓库）</li>
-<li>Remote：远程仓库</li>
-</ul>
-<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><p>查看远程仓库地址：<code>git remote -v</code></p>
-<p>修改远程地址：<code>git remote set-url origin http://xxxx/xxx.git</code>(后面是新地址)</p>
-<p><img src="/images/article/git/git_command.webp" alt="在这里插入图片描述"></p>
+<h2 id="创建本地版本库"><a href="#创建本地版本库" class="headerlink" title="创建本地版本库"></a>创建本地版本库</h2><p>其实这里就是你要上传的那个项目文件（例如：Project）</p>
+<h2 id="Git初始化"><a href="#Git初始化" class="headerlink" title="Git初始化"></a>Git初始化</h2><p>对着Project右键,选择Git bash here,通过命令<code>git init</code>把这个文件夹变成Git可管理的仓库</p>
+<p><img src="/images/article/git/git_1.png" alt="在这里插入图片描述"></p>
+<p>这时你会发现Project里面多了个.git文件夹，它是Git用来跟踪和管理版本库的。如果你看不到，是因为它默认是隐藏文件，那你就需要设置一下让隐藏文件可见。</p>
+<h2 id="项目添加到本地仓库"><a href="#项目添加到本地仓库" class="headerlink" title="项目添加到本地仓库"></a>项目添加到本地仓库</h2><p>你的项目粘贴到这个本地Git仓库里面（粘贴后你可以通过<code>git status</code>来查看你当前的状态），然后通过git add把项目添加到仓库（或<code>git add .</code>把该目录下的所有文件添加到仓库，注意点是用空格隔开的）。在这个过程中你其实可以一直使用git status来查看你当前的状态。</p>
+<h2 id="提交到仓库"><a href="#提交到仓库" class="headerlink" title="提交到仓库"></a>提交到仓库</h2><p>用git commit把项目提交到仓库，<code>-m</code>后面引号里面是本次提交的注释内容,命令如下</p>
+<p><code>git commit -m &quot;注解内容&quot;</code></p>
+<p><strong>下面就是上传了，如果没有配置SSH的话，可以先配置一下，这里不做详细的介绍了</strong></p>
+<p><img src="/images/article/git/git_2.png" alt="在这里插入图片描述"></p>
+<h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在Github上创建一个Git仓库，你可以直接点New repository来创建，比如我创建了一个Project的仓库</p>
+<h2 id="关联本地仓库"><a href="#关联本地仓库" class="headerlink" title="关联本地仓库"></a>关联本地仓库</h2><p>在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地Project仓库的命令行输入：</p>
+<p><code>git remote add origin https://github.com/WShaobin/Project.git</code></p>
+<p>这里可以是HTTPS或者SSH,二则选其一就行</p>
+<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><p>关联好之后我们就可以把本地库的所有内容推送到远程仓库（也就是Github）上了，通过：</p>
+<p><code>git push -u origin master</code></p>
+<p> 由于新建的远程仓库是空的，所以要加上<code>-u</code>这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了：</p>
+<p> <code>git push origin master</code></p>
+<p>至此就完成了将本地项目上传到Github的整个过程。</p>
+<p>另外，如果你在git push 的时候出现如下报错。<br><img src="/images/article/git/git_3.png" alt="在这里插入图片描述"></p>
+<p>原因是你勾选了Initialize this repository with a README，就是创建仓库的时候自动给你创建一个README文件，而本地仓库没有README文件，这时我们可以通过以下命令先将内容合并以下：</p>
+<p><code>git pull --rebase origin master</code></p>
+<p>然后重新push就成功了</p>
+<h2 id="Git忽略"><a href="#Git忽略" class="headerlink" title="Git忽略"></a>Git忽略</h2><h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>在添加.gitignore文件后，当想push文件的时候，声明的忽略文件还是会出现在push的目录中</p>
+<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>某些文件已经被纳入版本管理中，就算是在.gitignore中已经声明也不会起作用</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我们应该先把本地的缓存删除，然后再进行push，操作步骤如下</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached . <span class="comment">// 删除本地缓存</span></span><br><span class="line">git <span class="keyword">add</span> . <span class="comment">// 添加要提交的文件</span></span><br><span class="line">git commit -m <span class="string">'update .gitignore'</span> <span class="comment">// 更新本地的缓存</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="初次上传"><a href="#初次上传" class="headerlink" title="初次上传"></a>初次上传</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"注解内容"</span></span></span><br><span class="line"><span class="bash">git remote add origin https://github.com/xxx/xxx.git</span></span><br><span class="line"><span class="bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
+<p>如果git push时，报了git pull…的错，可以使用如下命令：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">--rebase origin master</span></span><br></pre></td></tr></table></figure>
+<h3 id="二次上传"><a href="#二次上传" class="headerlink" title="二次上传"></a>二次上传</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">add </span>.</span><br><span class="line"><span class="symbol">git</span> commit -m <span class="string">"注解内容"</span></span><br><span class="line"><span class="symbol">git</span> <span class="keyword">push </span>origin master</span><br></pre></td></tr></table></figure>
 <p><strong>参考</strong></p>
-<p><a href="https://www.git-scm.com/book/zh/v2" target="_blank" rel="noopener">Git官网命令</a><br><a href="https://www.jianshu.com/p/9685a56bdf7a" target="_blank" rel="noopener">Git最全命令</a></p>
+<p><a href="https://blog.csdn.net/zamamiro/article/details/70172900" target="_blank" rel="noopener">Git上传项目</a></p>
 
       
     </div>
@@ -531,7 +551,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://wynsbin.github.io/2019/10/24/git-command/" title="Git工作流程+常用命令">https://wynsbin.github.io/2019/10/24/git-command/</a>
+    <a href="https://wynsbin.github.io/2018/12/22/git-upload/" title="Git上传本地项目到Github">https://wynsbin.github.io/2018/12/22/git-upload/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -559,8 +579,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/08/chrome-plugin/" rel="next" title="Chrome打开应用商店及推荐实用插件">
-                <i class="fa fa-chevron-left"></i> Chrome打开应用商店及推荐实用插件
+              <a href="/2018/12/22/decompile-apk-1/" rel="next" title="Android 反编译Apk，修改资源，重新打包，签名发布">
+                <i class="fa fa-chevron-left"></i> Android 反编译Apk，修改资源，重新打包，签名发布
               </a>
             
           </div>
@@ -569,8 +589,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/25/VerificationCodeInputView/" rel="prev" title="Android 自定义验证码输入框(支持粘贴连续性)">
-                Android 自定义验证码输入框(支持粘贴连续性) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/08/chrome-plugin/" rel="prev" title="Chrome打开应用商店及推荐实用插件">
+                Chrome打开应用商店及推荐实用插件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -791,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git工作流程"><span class="nav-number">1.</span> <span class="nav-text">Git工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git常用命令"><span class="nav-number">2.</span> <span class="nav-text">Git常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建本地版本库"><span class="nav-number">1.</span> <span class="nav-text">创建本地版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git初始化"><span class="nav-number">2.</span> <span class="nav-text">Git初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目添加到本地仓库"><span class="nav-number">3.</span> <span class="nav-text">项目添加到本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交到仓库"><span class="nav-number">4.</span> <span class="nav-text">提交到仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建远程仓库"><span class="nav-number">5.</span> <span class="nav-text">创建远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联本地仓库"><span class="nav-number">6.</span> <span class="nav-text">关联本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送到远程仓库"><span class="nav-number">7.</span> <span class="nav-text">推送到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git忽略"><span class="nav-number">8.</span> <span class="nav-text">Git忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">8.1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因分析"><span class="nav-number">8.2.</span> <span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">8.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初次上传"><span class="nav-number">9.1.</span> <span class="nav-text">初次上传</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二次上传"><span class="nav-number">9.2.</span> <span class="nav-text">二次上传</span></a></li></ol></li></ol></div>
             
 
           </div>

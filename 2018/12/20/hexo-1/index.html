@@ -109,17 +109,17 @@
 <meta property="og:site_name" content="Wynsbin">
 <meta property="og:description" content="以前都是在CSDN上写博客，就想着何时自己搭建一个博客，终于通过借鉴和看了很多大神的文章，开启了Hexo+Github搭建博客，这里跟大家分享一些心得。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo_1_1.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo_1_2.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo_1_3.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo_1_4.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo_1_5.png">
-<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo_1_6.png">
-<meta property="og:updated_time" content="2019-10-23T06:54:48.187Z">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_1.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_2.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_3.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_4.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_5.png">
+<meta property="og:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_6.png">
+<meta property="og:updated_time" content="2019-10-25T07:23:11.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github搭建博客心得篇">
 <meta name="twitter:description" content="以前都是在CSDN上写博客，就想着何时自己搭建一个博客，终于通过借鉴和看了很多大神的文章，开启了Hexo+Github搭建博客，这里跟大家分享一些心得。">
-<meta name="twitter:image" content="https://wynsbin.github.io/images/article/hexo_1_1.png">
+<meta name="twitter:image" content="https://wynsbin.github.io/images/article/hexo/hexo_1_1.png">
 
 
 
@@ -475,13 +475,13 @@
 <h2 id="安装和配置Node-js"><a href="#安装和配置Node-js" class="headerlink" title="安装和配置Node.js"></a>安装和配置Node.js</h2><p><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a></p>
 <p>安装成功之后，打开cmd，运行以下两个命令<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></p>
 <p>出现对应的版本即表示安装成功，再运行<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">path</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/article/hexo_1_1.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/article/hexo/hexo_1_1.png" alt="在这里插入图片描述"></p>
 <p>如果看到nodejs字样证明配置环境成功</p>
 <h2 id="安装和配置Git"><a href="#安装和配置Git" class="headerlink" title="安装和配置Git"></a>安装和配置Git</h2><p>安装成功之后，桌面右键选择Git Bash Here,运行以下命令</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="comment">--version</span></span><br></pre></td></tr></table></figure>
 <p>出现对应的版本号，说明已经成功了。</p>
 <h2 id="Github上新建项目"><a href="#Github上新建项目" class="headerlink" title="Github上新建项目"></a>Github上新建项目</h2><p>在Github右上角【+】，选择new repository。项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README</p>
-<p><img src="/images/article/hexo_1_2.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/article/hexo/hexo_1_2.png" alt="在这里插入图片描述"></p>
 <p>在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，访问它，你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它。(https:// 账户名.github.io)</p>
 <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>1、在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。</p>
 <p>然后通过命令行进入到该文件夹里面</p>
@@ -502,21 +502,21 @@
 <li>输入<code>hexo g</code>，首次体验Hexo</li>
 <li>输入<code>hexo s</code>，开启服务器，访问该网址，正式体验Hexo</li>
 </ul>
-<p><img src="/images/article/hexo_1_3.png" alt="在这里插入图片描述"></p>
+<p><img src="/images/article/hexo/hexo_1_3.png" alt="在这里插入图片描述"></p>
 <p><strong>注意：开启之后，别把cmd窗口关闭，要不然就访问不了<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></strong></p>
 <p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“<code>hexo server -p 端口号</code>”来改变端口号</p>
 <h2 id="Git绑定Github账号"><a href="#Git绑定Github账号" class="headerlink" title="Git绑定Github账号"></a>Git绑定Github账号</h2><p>在blog文件里面，右键Git Base Here<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global user.name “账号”</span><br><span class="line">$ git<span class="built_in"> config </span>--global user.email “邮箱”</span><br><span class="line">$ cd ~/.ssh</span><br></pre></td></tr></table></figure></p>
 <p>输入ls，如果出现id_ras id_ras.pub….，则表示密钥已存在</p>
 <p>若不存在，则输入ssh-keygen -t rsa -C “<a href="mailto:xxx@qq.com" target="_blank" rel="noopener">xxx@qq.com</a>”，连续三个回车，生成密钥，最后得到了两个文件：id_rsa和id_rsa.pub（默认存储路径是：C:\Users\Administrator.ssh）。</p>
 <p>登录Github，点击头像下的settings，点击侧边栏SSH and GPG keys，再点击Add SSH Key，在title处填入任意的标识，在Key部分里面添加刚才复制的id_rsa.pub文件里的内容，点击添加即可</p>
-<p>输入ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，测试添加ssh是否成功<br><img src="/images/article/hexo_1_4.png" alt="在这里插入图片描述"></p>
+<p>输入ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，测试添加ssh是否成功<br><img src="/images/article/hexo/hexo_1_4.png" alt="在这里插入图片描述"></p>
 <h2 id="配置Deployment"><a href="#配置Deployment" class="headerlink" title="配置Deployment"></a>配置Deployment</h2><p>在blog目录下，找到_config.yml文件，修改repo值（在末尾）<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">	<span class="attribute">type</span>: git </span><br><span class="line">	<span class="attribute">repository</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:WShaobin/WShaobin.github.io.git</span><br><span class="line">	<span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p>
-<p>repository值是你在github项目里的ssh（右下角）<br><img src="/images/article/hexo_1_5.png" alt="在这里插入图片描述"></p>
+<p>repository值是你在github项目里的ssh（右下角）<br><img src="/images/article/hexo/hexo_1_5.png" alt="在这里插入图片描述"></p>
 <h2 id="新建一篇博客"><a href="#新建一篇博客" class="headerlink" title="新建一篇博客"></a>新建一篇博客</h2><p>右键git bash here执行命令：<code>hexo new post “文章”</code>或<code>hexo new “文章”</code></p>
 <p>这时候在文件夹_posts目录下将会看到已经创建的文件</p>
 <p>在生成以及部署文章之前，需要安装一个扩展：<code>npm install hexo-deployer-git --save</code></p>
 <p>使用编辑器编好文章，那么就可以使用命令：<code>hexo d -g</code>，生成以及部署了</p>
-<p>部署成功后访问你的地址：http://用户名.github.io。那么将看到生成的文章<br><img src="/images/article/hexo_1_6.png" alt="在这里插入图片描述"></p>
+<p>部署成功后访问你的地址：http://用户名.github.io。那么将看到生成的文章<br><img src="/images/article/hexo/hexo_1_6.png" alt="在这里插入图片描述"></p>
 <h2 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h2><p>进入blog目录，右键git bash here，执行命令：<code>npm install hexo-generator-searchdb --save</code></p>
 <p>修改根目录下的_config.yml，在最底部添加如下配置<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">search:</span></span><br><span class="line"><span class="symbol">	path:</span> search.xml</span><br><span class="line"><span class="symbol">	field:</span> post</span><br><span class="line"><span class="symbol">	format:</span> html</span><br><span class="line"><span class="symbol">	limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure></p>
 <p>修改主体下的themes\next_config.yml配置文件（我的目录：blog\themes\next_config.yml）</p>
@@ -727,7 +727,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -749,7 +749,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
