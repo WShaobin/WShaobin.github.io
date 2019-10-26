@@ -1223,6 +1223,16 @@ pre .javascript .function {
     word-break: break-word;
   }
 }
+.post-mapBox {
+  width: 100%;
+  height: 640px;
+  margin: 10px auto 0 auto;
+}
+@media (max-width: 767px) {
+  .post-mapBox {
+    height: 300px;
+  }
+}
 .post-body .fancybox img {
   display: block !important;
   margin: 0 auto;
@@ -1960,7 +1970,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #17ff0f;
+  background: #fff126;
 }
 .links-of-blogroll {
   font-size: 13px;
