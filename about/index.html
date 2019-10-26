@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Wynsbin">
 <meta property="og:description" content="个人简介 骚剑客/男/90后 专科/广东工贸/计算机软件 个人博客：https://wynsbin.github.io 备用博客：https://mppmz2.coding-pages.com Github：https://github.com/Wynsbin CSDN：https://blog.csdn.net/qq_30552993 简书：https://www.jianshu.com/u/c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-26T03:09:53.063Z">
+<meta property="og:updated_time" content="2019-10-26T03:25:26.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="欢迎查看简介信息～">
 <meta name="twitter:description" content="个人简介 骚剑客/男/90后 专科/广东工贸/计算机软件 个人博客：https://wynsbin.github.io 备用博客：https://mppmz2.coding-pages.com Github：https://github.com/Wynsbin CSDN：https://blog.csdn.net/qq_30552993 简书：https://www.jianshu.com/u/c">
@@ -347,8 +347,88 @@
 <!-- 引入 ECharts 文件 -->
 <script src="js/echarts.js"></script>
 <script src="js/china.js"></script>
-<script src="js/my-echarts.js"></script>
-<script>window.onload=myEcharts();</script>
+<script>
+function myEcharts() {
+    var e = echarts.init(document.getElementById("love-map"));
+    var n = {
+        "广州": [113.264385,23.129112]
+    };
+    var option = {
+        // backgroundColor: "#A7B1CA",
+        geo: {
+            map: "china",
+            label: {
+                emphasis: {
+                    show: true
+                }
+            },
+            roam: false,
+            itemStyle: {
+                normal: {
+                    borderWidth: .2, //区域边框宽度
+                    borderColor: '#009fe8', //区域边框颜色
+                    areaColor: "#ffefd5", //区域颜色
+                },
+                emphasis: {//鼠标滑过地图高亮的相关设置
+                    borderWidth: .2,
+                    borderColor: '#4b0082',
+                    areaColor: "#ffdead",
+                }
+            },
+        },
+        tooltip: {
+            trigger: "item",
+            formatter: function (e) {
+                return e.name + " - " + e.value[2]
+            }
+        },
+        series: [{
+            type: "effectScatter",
+            coordinateSystem: "geo",
+            data: function (e) {
+                for (var t = [], o = 0; o < e.length; o++) {
+                    var a = n[e[o].name];
+                    a && t.push({
+                        name: e[o].name,
+                        value: a.concat(e[o].value)
+                    })
+                }
+                return t
+            }([{
+                name: "广州",
+                value: "如今"
+            }]),
+            symbolSize: 5,
+            showEffectOn: "render",
+            rippleEffect: {
+                brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+                normal: {
+                    formatter: "{b}",
+                    position: "right",
+                    fontSize: 14,
+                    show: true
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: "#FD8888"
+                }
+            }
+        }]
+    };
+    // 使用制定的配置项和数据显示图表
+    e.setOption(option);
+    // echart图表自适应
+    window.addEventListener("resize", function() {
+        e.resize();
+    });
+}
+window.onload=myEcharts();
+</script>
+
 
 
 
