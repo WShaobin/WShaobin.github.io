@@ -26,7 +26,7 @@
   <entry>
     <title><![CDATA[Chrome打开应用商店及推荐实用插件]]></title>
     <url>%2F2019%2F01%2F08%2Fchrome-plugin%2F</url>
-    <content type="text"><![CDATA[解决Chrome打不开的问题，推荐开发使用的优质插件 解决方案 通过修改hosts文件等等 谷歌访问助手，根据自己使用的浏览器点击对应版本的插件，下载地址 实用插件 二维码(QR码)生成器 模拟其他浏览器访问的谷歌浏览器 网络请求：Postman 过滤广告：Adblock Plus github结构：octotree json结构树查看:json-handle 划词翻译 夜间模式:dark-reader]]></content>
+    <content type="text"><![CDATA[解决Chrome打不开的问题，推荐开发使用的优质插件 解决方案 通过修改hosts文件等等 谷歌访问助手，根据自己使用的浏览器点击对应版本的插件，下载地址 实用插件 二维码(QR码)生成器 模拟其他浏览器访问的谷歌浏览器 网络请求:Postman 过滤广告:Adblock Plus github结构:octotree json结构树查看:json-handle 划词翻译 夜间模式:dark-reader]]></content>
       <categories>
         <category>Chrome</category>
       </categories>
