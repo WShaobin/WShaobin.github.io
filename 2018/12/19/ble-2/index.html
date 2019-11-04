@@ -1090,13 +1090,10 @@ setInterval("createtime()",250);
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
   <div id="gitalk-container"></div>
   <script type="text/javascript">
-    var host = window.location.host;
-    console.log(host);
+    var isMainHost = (location.host == 'wynsbin.github.io');
     var gitalk = new Gitalk({
-      
-      clientID: '16a284764788598a8149',
-      clientSecret: 'b35223ea5895bd15ec9610ce69a1f7f6cc26ee43',
-      
+      clientID: isMainHost? 'cd6e88dc381c5d5a1aa5':'16a284764788598a8149',
+      clientSecret: isMainHost?'aee811a1271ae4b0c5bcce0fa049528b4e964f25':'b35223ea5895bd15ec9610ce69a1f7f6cc26ee43',
       repo: 'wynsbin.github.io',
       owner: 'Wynsbin',
       admin: ['Wynsbin'],
