@@ -1121,7 +1121,6 @@ setInterval("createtime()",250);
     var host = window.location.host;
     console.log(host);
     
-      console.log("bbb");
       var gitalk2 = new Gitalk({
         clientID: '16a284764788598a8149',
         clientSecret: 'b35223ea5895bd15ec9610ce69a1f7f6cc26ee43',
@@ -1129,7 +1128,7 @@ setInterval("createtime()",250);
         owner: 'Wynsbin',
         admin: ['Wynsbin'],
         id: location.pathname,
-        distractionFreeMode: 'false'
+        distractionFreeMode: 'true'
       })
       gitalk2.render('gitalk-container')
     
