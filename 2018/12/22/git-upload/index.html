@@ -562,7 +562,9 @@
     
     <!-- 修改文件链接 -->
     <script type="text/javascript">
-      var link = window.location.host+window.location.pathname;
+      var url = window.location.href;
+      var url_header= url.substring(0, url.indexOf('/', url.indexOf('://',0)+3));
+      var link = url_header+window.location.pathname;
       var post_link = document.getElementById("post_link");
       post_link.href = link;
       post_link.text = link;
