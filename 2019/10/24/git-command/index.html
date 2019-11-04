@@ -538,13 +538,23 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://wynsbin.github.io/2019/10/24/git-command/" title="Git工作流程+常用命令">https://wynsbin.github.io/2019/10/24/git-command/</a>
+    <a href="https://wynsbin.github.io/2019/10/24/git-command/" title="Git工作流程+常用命令" id="post_link">https://wynsbin.github.io/2019/10/24/git-command/</a>
+    
+    <!-- 修改文件链接 -->
+    <script type="text/javascript">
+      var link = window.location.host+window.location.pathname;
+      var post_link = document.getElementById("post_link");
+      post_link.href = link;
+      post_link.text = link;
+    </script>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
     本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+
+
 
       </div>
     
@@ -1096,16 +1106,21 @@ setInterval("createtime()",250);
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
   <div id="gitalk-container"></div>
   <script type="text/javascript">
-    var gitalk = new Gitalk({
-      clientID: 'cd6e88dc381c5d5a1aa5',
-      clientSecret: 'aee811a1271ae4b0c5bcce0fa049528b4e964f25',
-      repo: 'wynsbin.github.io',
-      owner: 'Wynsbin',
-      admin: ['Wynsbin'],
-      id: location.pathname,
-      distractionFreeMode: 'false'
-    })
-    gitalk.render('gitalk-container')
+    var host = window.location.host;
+    console.log(host);
+    
+      console.log("bbb");
+      var gitalk2 = new Gitalk({
+        clientID: '16a284764788598a8149',
+        clientSecret: 'b35223ea5895bd15ec9610ce69a1f7f6cc26ee43',
+        repo: 'Wynsbin_Gitalk',
+        owner: 'Wynsbin',
+        admin: ['Wynsbin'],
+        id: location.pathname,
+        distractionFreeMode: 'false'
+      })
+      gitalk2.render('gitalk-container')
+    
   </script>
 
 
