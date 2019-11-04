@@ -1129,31 +1129,18 @@ setInterval("createtime()",250);
   <div id="gitalk-container"></div>
   <script type="text/javascript">
     var host = window.location.host;
-    console.log(host);
-    console.log('wynsbin.github.io');
-    if(host == 'wynsbin.github.io') {
-      var gitalk = new Gitalk({
-        clientID: 'cd6e88dc381c5d5a1aa5',
-        clientSecret: 'aee811a1271ae4b0c5bcce0fa049528b4e964f25',
-        repo: 'wynsbin.github.io',
-        owner: 'Wynsbin',
-        admin: ['Wynsbin'],
-        id: location.pathname,
-        distractionFreeMode: 'true'
-      })
-      gitalk.render('gitalk-container')
-    } else {
-      var gitalk2 = new Gitalk({
-        clientID: '16a284764788598a8149',
-        clientSecret: 'b35223ea5895bd15ec9610ce69a1f7f6cc26ee43',
-        repo: 'wynsbin.github.io',
-        owner: 'Wynsbin',
-        admin: ['Wynsbin'],
-        id: location.pathname,
-        distractionFreeMode: 'true'
-      })
-      gitalk2.render('gitalk-container')
-    }
+    var gitalk = new Gitalk({
+      
+      clientID: '16a284764788598a8149',
+      clientSecret: 'b35223ea5895bd15ec9610ce69a1f7f6cc26ee43',
+      
+      repo: 'wynsbin.github.io',
+      owner: 'Wynsbin',
+      admin: ['Wynsbin'],
+      id: location.pathname,
+      distractionFreeMode: 'true'
+    })
+    gitalk.render('gitalk-container')
   </script>
 
 
